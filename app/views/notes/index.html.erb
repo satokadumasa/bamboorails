@@ -1,0 +1,55 @@
+        <div class="row">
+          <div class="col-lg-3 col-md-3 col-sm-12 col-12">
+            <h5>カテゴリ</h5>
+            <% @categories.each do |category| %>
+              <%=link_to category.name, { :controller => "/notes", :action => "index", p:{category_id: category.id} } %><br>
+            <% end %>
+          </div>
+          <div class="col-lg-9 col-md-9 col-sm-12 col-12">
+            <p id="notice"><%= notice %></p>
+
+            <h4>Notes</h4>
+
+            <br>
+            <p>検索</p>
+            <%= form_tag(notes_path,:method => 'get', class: 'justify-content-start') do %>
+              <div class="input-group">
+                <%=label :note, :category_id, t('notes.index.category_id'), class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+                <%= collection_select :note, :category_id, @categories, :id, :name, :include_blank => '未選択' ,selected: (params[:p] &&  params[:p][:category_id]) ? params[:p][:category_id] : -1 %>
+              </div>
+              <div class="input-group">
+                <%=label :note, :title, t('notes.index.title'), class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+                <%= text_field_tag :title, params[:title], class: 'form-control col-12 col-md-9 login_label' %>
+              </div>
+              <div class="input-group">
+                <%=label :note, :body, t('notes.index.body'), class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+                <%= text_field_tag :body, params[:body], class: 'form-control col-12 col-md-9 login_label' %>
+              </div>
+              <%= submit_tag t('notes.index.search'), name: nil,class: 'btn btn-primary btn-sm' %>
+            <% end %>
+            <hr>
+              <%= current_user ? link_to(t('notes.index.new_note'), new_note_path, class: 'btn btn-primary btn-sm') : '' %>
+            <hr>
+            <%= paginate @notes %>
+            <table class="table">
+              <tbody>
+                <% @notes.each do |note| %>
+                  <tr>
+                    <td style="width: 60%;">
+                      <%= link_to(note.title, note) %>
+                    </td>
+                    <td style="width: 20%;">
+                      <%=link_to(username(note.user), controller: :user_infos, action: :show, id: (note.user.user_info ? note.user.user_info.name : note.user.id)) %>
+                    </td>
+                    <td>
+                      <%= l(note.created_at, format: :short) %>
+                    </td>
+                  </tr>
+                <% end %>
+              </tbody>
+            </table>
+            <%= paginate @notes %>
+            <hr>
+            <%= link_to(t('agreements.back'), root_path, class: 'btn btn-primary btn-sm') %>
+          </div>
+        </div>

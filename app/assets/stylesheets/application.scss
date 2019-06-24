@@ -1,0 +1,227 @@
+/*
+ * This is a manifest file that'll be compiled into application.css, which will include all the files
+ * listed below.
+ *
+ * Any CSS and SCSS file within this directory, lib/assets/stylesheets, or any plugin's
+ * vendor/assets/stylesheets directory can be referenced here using a relative path.
+ *
+ * You're free to add application-wide styles to this file and they'll appear at the bottom of the
+ * compiled file so the styles you add here take precedence over styles defined in any other CSS/SCSS
+ * files in this directory. Styles in this file should be added after the last require_* statement.
+ * It is generally better to create a new file per style scope.
+ *
+ *= require_tree .
+ *= require_self
+ */
+@import "bootstrap";
+.header {
+	background-color: white;
+	color: black;
+	height: 50px;	
+	border: 1px solid gray;
+}
+
+.menu {
+	background-color: white;
+	color: black;
+	height: 30px;	
+	border: 1px solid gray;
+}
+
+.menu_bar{
+	background-color: white;
+	color: black;
+	height: 40px;	
+	border: 1px solid gray;
+}
+.main_contents{
+	background-color: white;
+	color: black;
+	min-height: 800px;
+	border: 1px solid gray;
+}
+
+.agreements {
+  min-height: 40px;
+	font-size: 0.8rem;
+	word-break: break-all;
+	border: 1px solid gray;
+}
+
+.footer {
+	background-color: white;
+	color: black;
+	height: 30px;	
+	border: 1px solid gray;
+}
+
+.site_name {
+	background-color: white;
+	color: black;
+	font-size: 30px;
+	font-weight: bold;
+	font-style: oblique; 
+}
+
+.login_form {
+  max-height: 150px;
+}
+
+.login_label {
+	margin: 5px;
+	text-align:left;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+}
+
+.album_image_list{
+	min-width: 500px;
+	min-height: 500px;
+	margin: 5px;
+	float: left;
+}
+.album_image {
+	width: 300px;
+	height: 300px;
+	margin: 5px;
+	float: left;
+}
+
+.album_info {
+	width: 530px;
+	max-height: 300px;
+	margin: 5px;
+	float: left;
+}
+
+.album_info_row {
+	width: 500px;
+	min-height: 30px;
+	margin: 5px;
+	float: left;
+}
+
+.contents_title {
+  width: 100%;
+  word-break : break-all;
+	font-size: 1.75rem;
+}
+
+@media (min-width: 992px) {
+
+	.detail {
+		margin: 5px;
+	  min-height: 400px;
+	  width: 100%;
+		font-size: 0.8rem;
+		word-break: break-all;
+	}
+	.list_detail{
+		margin: 5px;
+	  width: 100%;
+		font-size: 0.8rem;
+		word-break: break-all;
+	}
+}
+// 中デバイス（タブレット, 992px 未満）
+@media (max-width: 991.98px) {
+	.detail {
+		margin: 5px;
+	  min-height: 400px;
+	  width: 100%;
+		font-size: 1.0rem;
+		word-break: break-all;
+	}
+	.list_detail{
+		margin: 5px;
+	  width: 100%;
+		font-size: 0.8rem;
+		word-break: break-all;
+	}
+	.title {
+		font-size: 4.0rem;
+	}
+}
+// 小デバイス（横向きモバイル, 768px 未満）
+@media (max-width: 767.98px) {
+	.detail {
+		margin: 5px;
+	  min-height: 400px;
+	  width: 100%;
+		font-size: 1.0rem;
+		word-break: break-all;
+	}
+	.list_detail{
+		margin: 5px;
+	  min-height: 400px;
+	  width: 100%;
+		font-size: 1.8rem;
+		word-break: break-all;
+	}
+	.title {
+		font-size: 2.0rem;
+	}
+}
+// @include media-breakpoint-up(sm) {
+// 極小デバイス（縦向きモバイル, 576px 未満）
+@media (max-width: 575.98px) {
+	.detail {
+		margin: 5px;
+	  min-height: 400px;
+	  width: 100%;
+		font-size: 1.0rem;
+		word-break: break-all;
+	}
+	.list_detail{
+		margin: 5px;
+	  width: 100%;
+		font-size: 1.8rem;
+		word-break: break-all;
+	}
+	.title {
+		font-size: 1.0rem;
+	}
+}
+
+.dropbutton {
+  //display: block;
+  box-sizing: content-box;
+  width: 2rem;
+  padding: 0;
+  padding: 18px .75rem 30px;
+  -webkit-transition: all .6s cubic-bezier(.19,1,.22,1);
+  transition: all .6s cubic-bezier(.19,1,.22,1);
+  -webkit-transform: translateZ(0);
+  transform: translateZ(0);
+  border: 0;
+  outline: 0;
+  background-color: transparent;
+  float: right;
+}
+
+#marked-area {
+  width: 100%;
+  height: 500px;
+  float: left;
+  padding: 1px;
+  background-color: #fff;
+  overflow-y: scroll;
+}
+
+.left-contents{
+  width: 80%;
+  min-height: 700px;
+  float: left;
+  padding: 1px;
+  background-color: #fff;
+}
+
+.right-contents {
+  width: 20%;
+  min-height: 700px;
+  float: left;
+  padding: 1px;
+  background-color: #fff;
+}

@@ -1,0 +1,47 @@
+        <p id="notice"><%= notice %></p>
+
+        <h1>User Infos</h1>
+
+        <%= paginate @user_infos %>
+        <table>
+          <thead>
+            <tr>
+              <th>User</th>
+              <% if current_user && current_user.is_admin %>
+                <th>Mobile</th>
+                <th>Pref</th>
+                <th>Postal code</th>
+                <th>Address</th>
+                <th></th>
+                <th></th>
+                <th></th>
+              <% end %>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @user_infos.each do |user_info| %>
+              <tr>
+                <td><%= link_to user_info.name, user_info %></td>
+                <% if (current_user && (current_user.id == user_info.user_id || current_user.is_admin)) %>
+                <td><%= user_info.mobile %></td>
+                <td><%= user_info.pref_id %></td>
+                <td><%= user_info.postal_code %></td>
+                <td><%= user_info.address %></td>
+                <td><%= link_to 'Show', user_info %></td>
+                <% end %>
+                <td>
+                  <%= (current_user && (current_user.id == user_info.user_id || current_user.is_admin)) ? link_to('Edit', edit_user_info_path(user_info)) : '' %>
+                </td>
+                <td>
+                  <%= (current_user && (current_user.id == user_info.user_id || current_user.is_admin)) ? link_to('Destroy', user_info, method: :delete, data: { confirm: 'Are you sure?' }) : '' %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @user_infos %>
+
+        <br>
+
+        <%= current_user.user_info ? '' : link_to('New User Info', new_user_info_path) %>

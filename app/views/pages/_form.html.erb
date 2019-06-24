@@ -1,0 +1,168 @@
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-12 order-lg-1 order-2">
+            <%= form_with(model: page, local: true, html: {class: 'justify-content-start'}) do |form| %>
+              <% if page.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(page.errors.count, "error") %> prohibited this page from being saved:</h2>
+
+                  <ul>
+                  <% page.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+              <div class="row justify-content-start">
+                <%= form.hidden_field :user_id, value: page.user_id ? page.user_id : current_user.id %>
+                <%= form.hidden_field :note_id, value: page.note_id %>
+
+                <div class="col-lg-3 col-3">
+                  <%= form.label :title, class: 'control-label form-control-static' %>
+                </div>
+                <div class="col-lg-9 col-9">
+                  <div class="input-group">
+                    <%= form.text_field :title, class: 'form-control' %>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-3">
+                  <%= form.label :public_status, class: 'control-label form-control-static' %>
+                </div>
+                <div class="col-lg-9 col-9">
+                  <div class="input-group">
+                    <%= form.select 'public_status', @public_statuses %>
+                  </div>
+                </div>
+
+                <div class="col-lg-3 col-3">
+                  <%= form.label :detail, class: 'control-label form-control-static' %>
+                </div>
+                <div class="col-lg-9 col-9">
+                  <div class="input-group" id="detail_area">
+                    <%= form.text_area :detail, rows: 20, class: 'detail form-control' %>
+                  </div>
+                </div>
+
+                <div class="actions">
+                  <%= form.submit %>
+                  <%= link_to t('pages.new.back_to_list'), pages_path, class: 'btn btn-primary btn-sm' %>
+                </div>
+              </div>
+            <% end %>
+          </div>
+          <div class="col-lg-4 col-md-12 col-12 order-lg-2 order-1">
+            【プレビュー】<br>
+            ■入力補助<br>
+            <!-- モーダルウィンドウを開くボタン -->
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal1" onclick="get_album();">
+              画像添付
+            </button>
+            <div class="modal fade" id="modal1" tabindex="-1"
+                  role="dialog" aria-labelledby="label1" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="label1">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    <select name="select_album" id="select_album" class="btn btn-primary btn-sm">
+                      <% @albums.each do |album| %>
+                        <option value="<%= album.id %>"><%= album.title %></option>
+                      <% end %>
+                    </select>
+                    <hr>
+                    <div id="image_list">
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- button type="button" class="btn btn-primary">OK</button -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#modal2">
+              箇条書き
+            </button>
+            <div class="modal fade" id="modal2" tabindex="-1"
+                  role="dialog" aria-labelledby="label1" aria-hidden="true">
+              <div class="modal-dialog" role="document">
+                <div class="modal-content">
+                  <div class="modal-header">
+                    <h5 class="modal-title" id="label1">Modal title</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                      <span aria-hidden="true">&times;</span>
+                    </button>
+                  </div>
+                  <div class="modal-body">
+                    【箇条書き】
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-12">
+                        リストタイプ
+                      </div>
+                      <div class="col-lg-9 col-md-9 col-12">
+                        <select id="list_style_type">
+                          <option value="none">NONE</option>
+                          <option value="disc">黒丸</option>
+                          <option value="circle">白丸</option>
+                          <option value="square">黒四角</option>
+                          <option value="lower-roman">小文字のローマ数字</option>
+                          <option value="upper-roman">大文字のローマ数字</option>
+                          <option value="lower-greek">小文字のギリシャ文字</option>
+                          <option value="decimal">算用数字</option>
+                          <option value="decimal-leading-zero">先頭に0をつけた算用数字</option>
+                          <option value="lower-latin">小文字のアルファベット</option>
+                          <option value="lower-alpha">小文字のアルファベット</option>
+                          <option value="upper-latin">大文字のアルファベット</option>
+                          <option value="upper-alpha">大文字のアルファベット</option>
+                          <option value="cjk-ideographic">漢数字</option>
+                          <option value="hiragana">ひらがなのあいうえお順</option>
+                          <option value="katakana">カタカナのアイウエオ順</option>
+                          <option value="hiragana-iroha">ひらがなのいろはにほへと順</option>
+                          <option value="katakana-iroha">カタカナのイロハニホヘト順</option>
+                          <option value="hebrew">ヘブライ数字</option>
+                          <option value="armenian">アルメニア数字</option>
+                          <option value="georgian">グルジア数字</option>
+                        </select> 
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-3 col-md-3 col-12">
+                        内容 
+                      </div>
+                      <div class="col-lg-9 col-md-9 col-12">
+                        <textarea id="bullet_item" rows="10" style="width: 80%;"></textarea>
+                      </div>
+                    </div>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal" id="set_bullet_item">Close</button>
+                    <!-- button type="button" class="btn btn-primary">OK</button -->
+                  </div>
+                </div>
+              </div>
+            </div>
+            <hr>
+            ■Markdown記法<br>
+            ●強調<br>
+            ##[強調したい文字列]##<br>
+            ●見出し<br>
+            H1 ＞　#h1:[見出し]<br>
+            H2 ＞　#h2:[見出し]<br>
+            H3 ＞　#h3:[見出し]<br>
+            H4 ＞　#h4:[見出し]<br>
+            H5 ＞　#h5:[見出し]<br>
+
+
+          </div>
+        </div>
+        <hr>
+        <div class="row">
+          <div class="col-lg-8 col-md-12 col-sm-12 col-12" id="marked-area">
+          </div>
+          <div class="col-lg-4 col-md-12 col-sm-12 col-12">
+          </div>
+        </div>

@@ -1,0 +1,56 @@
+        <%= form_with(model: dmessage, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if dmessage.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(dmessage.errors.count, "error") %> prohibited this dmessage from being saved:</h2>
+
+              <ul>
+              <% dmessage.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row justify-content-start">
+            <div class="col-lg-2 col-3">
+              <%= form.label :sender_id, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <div class="input-group">
+                <%= current_user.user_info ? current_user.user_info.name : 'User-' + current_user.id.to_s %>
+                <%= form.hidden_field :sender_id %>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-3">
+              <%= form.label :receiver_id, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <div class="input-group">
+                <%= @receiver.user_info ? @receiver.user_info.name : 'User-' + @receiver.id.to_s %>
+                <%= form.hidden_field :receiver_id %>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-12">
+              <%= form.label :title, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-12">
+              <div class="input-group">
+                <%= form.text_field :title, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-12">
+              <%= form.label :detail, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-12">
+              <div class="input-group">
+                <%= form.text_area :detail, rows: 20, class: 'form-control' %>
+              </div>
+            </div>
+
+            <div class="actions">
+              <%= form.submit %>
+            </div>
+          </div>
+        <% end %>

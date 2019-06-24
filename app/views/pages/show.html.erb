@@ -1,0 +1,97 @@
+				<h4><%= @page.title %></h4> 
+        <%= t 'pages.show.user_name' %>：<%= @page.user.user_info ? link_to(@page.user.user_info.name, {controller: :user_infos, action: :show, id: @page.user.user_info.name}) : 'User-' << @page.user_id.to_s %><br>
+
+				[<%= l(@page.created_at, format: :short) %>]
+				<hr>
+				<%= (current_user && (current_user.id == @page.user.id || current_user.is_admin)) ? link_to('Edit', edit_page_path(@page), class: 'btn btn-primary btn-sm') << ' | ' : '' %>
+				<%= link_to '「' << @page.note.title << '」	', @page.note %>
+				<hr>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<div class="twitter"><a href="//twitter.com/share" class="twitter-share-button" data-text="<%=@overview %>" data-url="<%=request.url %>" data-lang="ja" target="_blank">Tweet</a></div>
+					</li>
+					<li class="list-inline-item">
+						<div class="fb-share-button" data-href="<%=request.url %>" data-layout="button_count" data-size="small">
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+						</div>
+					</li>
+				</ul>
+				<hr>
+				[<%= @previous ? link_to(@previous.title, note_page_path(@page.note, @previous.id)) : '--' %>]
+				[<%= @next ? link_to(@next.title, note_page_path(@page.note, @next.id)) : '--' %>]
+				<hr>
+				<hr>
+				<div class="detail overflow-auto note-detail" id="note-detail" style="word-break: break-all;">
+					<%= @page.detail %>
+				</div>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<div class="twitter"><a href="//twitter.com/share" class="twitter-share-button" data-text="<%=@overview %>" data-url="<%=request.url %>" data-lang="ja" target="_blank">Tweet</a></div>
+					</li>
+					<li class="list-inline-item">
+						<div class="fb-share-button" data-href="<%=request.url %>" data-layout="button_count" data-size="small">
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+						</div>
+					</li>
+				</ul>
+				<hr>
+				[<%= @previous ? link_to(@previous.title, note_page_path(@page.note, @previous.id)) : '' %>]
+				[<%= @next ? link_to(@next.title, note_page_path(@page.note, @next.id)) : '' %>]
+				<hr>
+				<% if (current_user) %>
+					<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+					  コメント投稿
+					</button>
+					<hr>
+					<!-- モーダルの設定 -->
+					<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+					  <div class="modal-dialog" role="document">
+					    <div class="modal-content">
+					      <div class="modal-header">
+					        <h5 class="modal-title" id="exampleModalLabel">コメント投稿</h5>
+					        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+					          <span aria-hidden="true">&times;</span>
+					        </button>
+					      </div>
+								<%= form_for([@page, @page.page_comments.build], html: {class: 'justify-content-start'}) do |f| %>
+						      <div class="modal-body">
+					          <%= f.hidden_field :user_id, value: current_user.id %>
+					          <%= f.hidden_field :note_id, value: @page.id %>
+									  <div class="field">
+									    <%= f.label :title %>
+					            <div class="input-group">
+									    	<%= f.text_field :title, class: 'control-label form-control-static col-12 col-md-12' %>
+									    </div>
+									  </div>
+									  <div class="field">
+									    <%= f.label :detail %>
+					            <div class="input-group">
+										    <%= f.text_area :detail, rows: 20, class: 'control-label form-control-static col-12 col-md-12 detail' %>
+										  </div>
+									  </div>
+						      </div>
+						      <div class="modal-footer">
+									  <div class="actions">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+									    <%= f.submit :class= => "btn btn-primary" %>
+									  </div>
+						      </div><!-- /.modal-footer -->
+								<% end %>
+					    </div><!-- /.modal-content -->
+					  </div><!-- /.modal-dialog -->
+					</div><!-- /.modal -->
+				<% end %>
+				<hr>
+				<% @page.page_comments.each do |page_comment| %>
+					<% unless page_comment.title == '' %>
+						<div class="overflow-auto">
+							<h4><%= page_comment.title %></h4>
+						</div>
+						<%= page_comment.page.user.user_info.name %> さん
+						[<%= page_comment.created_at ? l(page_comment.created_at , format: :short) : '--' %>]<br>
+						<div class="overflow-auto" style="word-break: break-all;">
+							<%= br(page_comment.detail) %><br>
+						</div>
+					<% end %>
+				<hr>
+				<% end %>

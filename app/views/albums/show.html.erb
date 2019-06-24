@@ -1,0 +1,28 @@
+			<div class="album_image_list">
+	            <% if @album.images %>
+                    <% @album.images.each do |image| %>
+                        <div class="album_image">
+                            <%= disp_image image %> <br>
+                        </div>
+                    <% end %>
+	            <% end %>
+            </div>
+            <div class="album_info">
+            	<div class="album_info_row">
+                    <%= @album.user.user_info ? link_to(@album.user.user_info.name, {controller: :user_infos, action: :show, id: @album.user.user_info.name}) : 'User-' << @album.user_id.to_s %>
+            	</div>
+            	<div class="album_info_row">
+            		<%= l @album.created_at, format: :short %>
+            	</div>
+            	<div class="album_info_row">
+            		<%= @album.title %>
+            	</div>
+            	<div class="album_info_row">
+            		<%= @album.description %>
+            	</div>
+            	<div class="album_info_row">
+								<%= link_to 'Back', albums_path, class: 'btn btn-primary btn-sm' %> | 
+								<%= link_to('Edit', edit_album_path(@album), class: 'btn btn-primary btn-sm') << ' | ' if current_user && current_user.id = @album.user.id %>
+				        <%= link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+            	</div>
+            </div>

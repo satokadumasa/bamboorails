@@ -1,0 +1,11 @@
+				<p id="notice"><%= notice %></p>
+				<hr>
+				<h4><%= @news.title %></h4>
+				<%= t('news.show.name') %>：<%= @news.user.user_info.name %><br>
+				<hr>
+				(<%= l(@news.created_at, format: :short) %>)
+				<hr>
+				<%= br @news.body %>
+				<hr>
+				<%= (current_user && current_user.is_admin) ? link_to( t('news.show.edit'), edit_news_path(@news)) << ' | ' : '' %>
+				<%= link_to t('news.show.list'), news_index_path %>

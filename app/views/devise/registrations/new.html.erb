@@ -1,0 +1,29 @@
+          <h4>登録</h4>
+
+          <%= form_for(resource, as: resource_name, url: registration_path(resource_name), html: {class: "justify-content-end md-12"}) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+
+            <div class="field">
+              <%= f.label :email, class: 'control-label form-control-static login_label' %><br />
+              <%= f.email_field :email, autofocus: true, autocomplete: "email", class: 'form-control' %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password, class: 'control-label form-control-static login_label' %>
+              <% if @minimum_password_length %>
+              <em>(<%= @minimum_password_length %> characters minimum)</em>
+              <% end %><br />
+              <%= f.password_field :password, class: 'form-control', autocomplete: "new-password" %>
+            </div>
+
+            <div class="field">
+              <%= f.label :password_confirmation, class: 'control-label form-control-static login_label' %><br />
+              <%= f.password_field :password_confirmation, class: 'form-control', autocomplete: "new-password" %>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up" %>
+            </div>
+          <% end %>
+
+          <%= render "devise/shared/links" %>

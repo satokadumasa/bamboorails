@@ -1,0 +1,40 @@
+        <%= form_with(model: note, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if note.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(note.errors.count, "error") %> prohibited this note from being saved:</h2>
+              <ul>
+              <% note.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+          <div class="row justify-content-start">
+
+            <%= form.hidden_field :user_id, value: note.user_id ? note.user_id : current_user.id %>
+
+            <div class="input-group">
+              <%= form.label :title,  class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+              <%= form.text_field :title, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+
+            <div class="input-group">
+              <%= form.label :public_status, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+              <%= form.select 'public_status', @public_statuses %>
+            </div>
+
+            <div class="input-group">
+              <%= form.label :category_id, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+              <%= form.collection_select 'category_id', @categories, :id, :name %>
+            </div>
+
+            <div class="input-group">
+              <%= form.label :body, class: 'control-label form-control-static col-12 col-md-2 login_label note_bpdy' %>
+              <%= form.text_area :body, rows: 20, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+            <div class="input-group">
+              <%= form.submit class: 'btn btn-primary btn-sm' %> | 
+              <%= link_to t('pages.new.back_to_list'), pages_path, class: 'btn btn-primary btn-sm' %>
+            </div>
+          </div>
+        <% end %>

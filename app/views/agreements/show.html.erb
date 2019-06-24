@@ -1,0 +1,16 @@
+				<p id="notice"><%= notice %></p>
+
+				<p>
+				  <strong><%= @agreement.tiele %></strong>
+				</p>
+
+				<p>
+				  <%= br @agreement.outline %>
+				</p>
+
+				<p>
+				  <%= br @agreement.detail %>
+				</p>
+				<br>
+				<%= (current_user && current_user.is_admin) ?  link_to('Edit', edit_agreement_path(@agreement), class: 'btn btn-primary btn-sm') << ' | ' : '' %>
+				<%= link_to(t('agreements.back'), root_path, class: 'btn btn-primary btn-sm') %>

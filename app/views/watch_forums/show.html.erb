@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @watch_forum.user_id %>
+</p>
+
+<p>
+  <strong>Forum:</strong>
+  <%= @watch_forum.forum_id %>
+</p>
+
+<%= link_to 'Edit', edit_watch_forum_path(@watch_forum) %> |
+<%= link_to 'Back', watch_forums_path %>

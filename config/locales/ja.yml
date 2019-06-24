@@ -1,0 +1,219 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+ja:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y年%m月%d日(%a)"
+
+    day_names: [日曜日, 月曜日, 火曜日, 水曜日, 木曜日, 金曜日, 土曜日]
+    abbr_day_names: [日, 月, 火, 水, 木, 金, 土]
+
+    month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+    abbr_month_names: [~, 1月, 2月, 3月, 4月, 5月, 6月, 7月, 8月, 9月, 10月, 11月, 12月]
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%Y/%m/%d(%a)"
+      long: "%Y年%m月%d日(%a) %H時%M分%S秒"
+    am: "午前"
+    pm: "午後"
+  views:
+    pagination:
+      first: "&laquo; 最新"
+      last: "最初 &raquo;"
+      previous: "&lsaquo; 前"
+      next: "次 &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+
+  agreements: 
+    agreement: 利用規約
+    back: トップへ   
+
+  top_page:
+    news: お知らせ
+    note: 新着 Note
+    follow_user_note: フォローユーザー更新
+    bookmark: ブックマークNote新着
+
+  users:
+    edit:
+      caution_input_current_password: 現在のパスワードを入力してください。
+      caution_input_new_password: 新しいパスワードを入力してください。
+      characters_minimum: 最低文字数
+      cancel_my_account: アカウント削除
+      update: 更新
+
+  user_infos:
+    show:
+      edit: 編集
+      page_name: プロフィール
+      tab1_name: ' さんのノート・アルバム（新着順）'  
+      profile_image: さん
+      id: ID
+      name: 名前 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+      pref_id: 都道府県
+      mobile: 携帯電話
+      postal_code: 郵便番号
+      address: 住所
+      created_at: 作成日
+      updated_at: 更新日
+    edit:
+      index: 一覧へ戻る
+
+  forums:
+    index:
+      forum_category_id: カテゴリー
+      title: タイトル
+      body: 本文
+      new_forum: フォーラム作成
+      search: 検索
+    show:
+      forum_category_id: カテゴリー
+      title: タイトル
+      body: 本文
+    new:
+      index: 一覧へ戻る
+    edit:
+      index: 一覧へ戻る
+
+  news:
+    index:
+      create_news: ニュース作成
+    show:
+      name: 投稿者
+      edit: 編集  
+      list: 一覧へ戻る
+    new:
+      title: 題名
+      body: 本文
+      submit: 登録
+      index: 一覧へ戻る
+    edit:
+      title: 題名
+      body: 本文
+      submit: 登録
+      show: 編集中止
+      index: 一覧へ戻る
+
+  notes:
+    index:
+      category_id: カテゴリー
+      title: タイトル
+      body: 本文
+      new_note: Note作成
+      search: 検索
+    show:
+      category_id: カテゴリー
+      title: タイトル
+      user_name: 作者
+      body: 本文
+      new_page: ページ作成
+      edit: 編集
+      back_to_list: 一覧へ戻る
+    new:
+      index: 一覧へ戻る
+    edit:
+      index: 一覧へ戻る
+
+  pages:
+    index:
+      list: ページ一覧
+    show:
+      user_name: 作者
+      back_to_list: 一覧へ戻る
+    new:
+      submit: 新規登録  
+      back_to_list: 一覧へ戻る
+
+  activerecord:
+    models:
+      user: ユーザー # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ
+      note: ノート
+    attributes:
+      user_info:
+        id: ID
+        name: 名前 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+        pref_id: 都道府県
+        mobile: 携帯電話
+        postal_code: 郵便番号
+        address: 住所
+        created_at: 作成日
+        updated_at: 更新日
+
+      dmessage:
+        sender_id: 送信者
+        retriever_id: 受信者
+        title: タイトル
+        detail: 本文 
+
+      news:
+        title: タイトル
+        body: 本文
+        submit: 登録
+
+      note:
+        title: タイトル
+        category_id: カテゴリー
+        public_status: 公開範囲
+        body: 本文
+        created_at: 作成日
+        updated_at: 更新日
+
+      page:
+        title: タイトル
+        public_status: 公開範囲
+        detail: 本文
+        created_at: 作成日
+        updated_at: 更新日
+
+      forum:
+        forum_category_id: カテゴリー
+        title: タイトル
+        detail: 本文
+        created_at: 作成日
+        updated_at: 更新日

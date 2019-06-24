@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @forum_comment.user_id %>
+</p>
+
+<p>
+  <strong>Forum:</strong>
+  <%= @forum_comment.forum_id %>
+</p>
+
+<p>
+  <strong>Titel:</strong>
+  <%= @forum_comment.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @forum_comment.detail %>
+</p>
+
+<%= link_to 'Edit', edit_forum_comment_path(@forum_comment) %> |
+<%= link_to 'Back', forum_comments_path %>

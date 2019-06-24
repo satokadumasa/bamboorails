@@ -1,0 +1,34 @@
+<%= form_with(model: page_comment, local: true) do |form| %>
+  <% if page_comment.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(page_comment.errors.count, "error") %> prohibited this page_comment from being saved:</h2>
+
+      <ul>
+      <% page_comment.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <%= form.hidden_field :user_id , value: page_comment.user_id ? page_comment.user_id : current_user.id %>
+
+  <div class="field">
+    <%= form.label :page_id %>
+    <%= form.number_field :page_id %>
+  </div>
+
+  <div class="field">
+    <%= form.label :title %>
+    <%= form.text_field :title %>
+  </div>
+
+  <div class="field">
+    <%= form.label :detail %>
+    <%= form.text_area :detail %>
+  </div>
+
+  <div class="actions">
+    <%= form.submit %>
+  </div>
+<% end %>

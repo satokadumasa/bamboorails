@@ -1,0 +1,130 @@
+# Files in the config/locales directory are used for internationalization
+# and are automatically loaded by Rails. If you want to use locales other
+# than English, add the necessary files in this directory.
+#
+# To use the locales, use `I18n.t`:
+#
+#     I18n.t 'hello'
+#
+# In views, this is aliased to just `t`:
+#
+#     <%= t('hello') %>
+#
+# To use a different locale, set it with `I18n.locale`:
+#
+#     I18n.locale = :es
+#
+# This would use the information in config/locales/es.yml.
+#
+# The following keys must be escaped otherwise they will not be retrieved by
+# the default I18n backend:
+#
+# true, false, on, off, yes, no
+#
+# Instead, surround them with single quotes.
+#
+# en:
+#   'true': 'foo'
+#
+# To learn more, please read the Rails Internationalization guide
+# available at http://guides.rubyonrails.org/i18n.html.
+en:
+  date:
+    formats:
+      default: "%Y/%m/%d"
+      short: "%m/%d"
+      long: "%Y/%m/%d(%a)"
+
+    day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+    abbr_day_names: [Sun, Mon, Tue, Wed, Thu, Fri, Sat]
+
+    month_names: [~, January, February, March, April, May, June, July, August, September, October, November, December]
+    abbr_month_names: [~, Jan, Feb, Mah, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec]
+
+    order:
+      - :year
+      - :month
+      - :day
+
+  time:
+    formats:
+      default: "%Y/%m/%d %H:%M:%S"
+      short: "%y/%m/%d %H:%M"
+      long: "%Y/%m/%d(%a) %H:%M:%S %Z"
+    am: "AM"
+    pm: "PM"
+  views:
+    pagination:
+      first: "&laquo; First"
+      last: "Last &raquo;"
+      previous: "&lsaquo; Prev"
+      next: "Next &rsaquo;"
+      truncate: "&hellip;"
+  helpers:
+    page_entries_info:
+      one_page:
+        display_entries:
+          zero: "No %{entry_name} found"
+          one: "Displaying <b>1</b> %{entry_name}"
+          other: "Displaying <b>all %{count}</b> %{entry_name}"
+      more_pages:
+        display_entries: "Displaying %{entry_name} <b>%{first}&nbsp;-&nbsp;%{last}</b> of <b>%{total}</b> in total"
+
+  top_page:
+    news: Infomarion
+    note: New Note
+
+  user_infos:
+    show:
+      page_name: Profile   
+      tab1_name: ' Note And Album'  
+      profile_image: ''
+      id: ID
+      name: Name # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+      pref_id: Pref
+      mobile: mobile
+      postal_code: Postal Code
+      address: Address
+      created_at: Created At
+      updated_at: Updated At
+
+  users:
+    edit:
+      caution_input_current_password: we need your current password to confirm your changes
+      caution_input_new_password: leave blank if you don't want to change it
+      characters_minimum: Characters minimum is
+      cancel_my_account: Cancel my account
+      update: update
+
+  forums:
+    index:
+      forum_category_id: Category
+      title: Title
+      body: Body
+      new_forum: New Forum
+      search: Search
+    show:
+      forum_category_id: Category
+      title: Title
+      body: Body
+
+  notes:
+    index:
+      category_id: Category
+      title: Title
+      body: Body
+      new_note: New Note
+      search: search
+    show:
+      category_id: Category
+      title: Title
+      user_name: Author
+      body: Body
+      new_page: New Page
+
+  pages:
+    index:
+      list: Page List
+    show:
+      user_name: Autor
+

@@ -1,0 +1,106 @@
+				<p id="notice"><%= notice %></p>
+				<h4><%= @forum.title %></h4>
+    		投稿者：<%= @forum.user.user_info ? link_to(@forum.user.user_info.name, {controller: :user_infos, action: :show, id: @forum.user.user_info.name}) : 'User-' << @forum.user_id.to_s %><br>
+				[<%= l(@forum.created_at, format: :short) %>]
+				<hr>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<div class="twitter"><a href="//twitter.com/share" class="twitter-share-button" data-text="<%=@overview %>" data-url="<%=request.url %>" data-lang="ja" target="_blank">Tweet</a></div>
+					</li>
+					<li class="list-inline-item">
+						<div class="fb-share-button" data-href="<%=request.url %>" data-layout="button_count" data-size="small">
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+						</div>
+					</li>
+				  <% if current_user %>
+						<li class="list-inline-item">
+					  	<%= form_with(model: @watch_forum, local: true, id: 'watch_forum') do |form| %>
+						    <%= form.hidden_field :user_id %>
+  						  <%= form.hidden_field :forum_id %>
+  						  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+  						  <input type="hidden" name="is_watching_forum" id="is_watching_forum" value="<%=current_user.is_watching_forum(@forum.id) ? 'Watching' : '' %>">
+								<div class="btn-sm btn-<%=current_user.is_watching_forum(@forum.id) > 0 ? 'success' : 'primary' %> watch_forum">
+									<%=current_user.is_watching_forum(@forum.id) > 0 ? 'Watching' : 'Watch Forum' %>
+								</div>
+  						<% end %>
+						</li>
+					<% end %>
+				</ul>
+				<hr>
+				<div class="detail overflow-autos">
+					<%= br @forum.detail %>
+				</div>
+				<hr>
+				<ul class="list-inline">
+					<li class="list-inline-item">
+						<div class="twitter"><a href="//twitter.com/share" class="twitter-share-button" data-text="<%=@overview %>" data-url="<%=request.url %>" data-lang="ja" target="_blank">Tweet</a></div>
+					</li>
+					<li class="list-inline-item">
+						<div class="fb-share-button" data-href="<%=request.url %>" data-layout="button_count" data-size="small">
+							<a target="_blank" href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" class="fb-xfbml-parse-ignore">Facebook</a>
+						</div>
+					</li>
+				</ul>
+				<hr>
+				<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#myModal">
+				  コメント投稿
+				</button>
+				<hr>
+				<!-- モーダルの設定 -->
+				<div class="modal fade" id="myModal" tabindex="-1" role="dialog" aria-labelledby="myModalLabel">
+				  <div class="modal-dialog" role="document">
+				    <div class="modal-content">
+				      <div class="modal-header">
+				        <h5 class="modal-title" id="exampleModalLabel">コメント投稿</h5>
+				        <button type="button" class="close" data-dismiss="modal" aria-label="閉じる">
+				          <span aria-hidden="true">&times;</span>
+				        </button>
+				      </div>
+				      <% if current_user %>
+								<%= form_for([@forum, @forum.forum_comments.build], html: {class: 'justify-content-start'}) do |f| %>
+						      <div class="modal-body">
+					          <%= f.hidden_field :user_id, value: current_user.id %>
+					          <%= f.hidden_field :note_id, value: @forum.id %>
+									  <div class="field">
+									    <%= f.label :title %>
+					            <div class="input-group">
+									    	<%= f.text_field :title, class: 'control-label form-control-static col-12 col-md-12' %>
+									    </div>
+									  </div>
+									  <div class="field">
+									    <%= f.label :detail %>
+					            <div class="input-group">
+										    <%= f.text_area :detail, rows: 20, class: 'control-label form-control-static col-12 col-md-12 detail' %>
+										  </div>
+									  </div>
+						      </div>
+						      <div class="modal-footer">
+									  <div class="actions">
+							        <button type="button" class="btn btn-secondary" data-dismiss="modal">閉じる</button>
+									    <%= f.submit :class= => "btn btn-primary" %>
+									  </div>
+						      </div><!-- /.modal-footer -->
+								<% end %>
+							<% end %>
+				    </div><!-- /.modal-content -->
+				  </div><!-- /.modal-dialog -->
+				</div><!-- /.modal -->
+				<hr>
+				<% @forum.forum_comments.each do |forum_comment| %>
+					<% unless forum_comment.title == '' %>
+						<dl>
+							<dt>
+								<h5><%=forum_comment.title %></h5>
+								<%=forum_comment.user.user_info.name %><br>
+								(<%=l(forum_comment.created_at, format: :short) %>)
+							</dt>
+							<dd>
+								<%=br forum_comment.detail %>
+							</dd>
+						</dl>
+					<% end %>
+				<% end %>
+				<%= (current_user && (current_user.id == @forum.user_id || current_user.is_admin)) ?  link_to('Edit', edit_forum_path(@forum), class: 'btn btn-primary btn-sm') << ' | ' : '' %>
+				<%= (current_user && (current_user.id == @forum.user_id || current_user.is_admin)) ?  link_to('Back', forums_path, class: 'btn btn-primary btn-sm') : '' %>
+				<br>
+				<br>

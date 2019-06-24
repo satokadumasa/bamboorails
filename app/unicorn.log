@@ -1,0 +1,44 @@
+I, [2019-04-23T14:50:02.805925 #15466]  INFO -- : Refreshing Gem list
+I, [2019-04-23T14:50:09.931458 #15466]  INFO -- : listening on addr=/tmp/unicorn.sock fd=17
+I, [2019-04-23T14:50:09.931958 #15466]  INFO -- : worker=0 spawning...
+I, [2019-04-23T14:50:09.936704 #15466]  INFO -- : worker=1 spawning...
+I, [2019-04-23T14:50:09.939450 #15476]  INFO -- : worker=0 spawned pid=15476
+I, [2019-04-23T14:50:09.940291 #15476]  INFO -- : worker=0 ready
+I, [2019-04-23T14:50:09.941678 #15466]  INFO -- : worker=2 spawning...
+I, [2019-04-23T14:50:09.944874 #15479]  INFO -- : worker=1 spawned pid=15479
+I, [2019-04-23T14:50:09.945673 #15479]  INFO -- : worker=1 ready
+I, [2019-04-23T14:50:09.947527 #15466]  INFO -- : worker=3 spawning...
+I, [2019-04-23T14:50:09.949831 #15482]  INFO -- : worker=2 spawned pid=15482
+I, [2019-04-23T14:50:09.950610 #15482]  INFO -- : worker=2 ready
+I, [2019-04-23T14:50:09.952762 #15466]  INFO -- : worker=4 spawning...
+I, [2019-04-23T14:50:09.955523 #15485]  INFO -- : worker=3 spawned pid=15485
+I, [2019-04-23T14:50:09.956298 #15485]  INFO -- : worker=3 ready
+I, [2019-04-23T14:50:09.958386 #15466]  INFO -- : worker=5 spawning...
+I, [2019-04-23T14:50:09.960582 #15488]  INFO -- : worker=4 spawned pid=15488
+I, [2019-04-23T14:50:09.961494 #15488]  INFO -- : worker=4 ready
+I, [2019-04-23T14:50:09.963662 #15466]  INFO -- : worker=6 spawning...
+I, [2019-04-23T14:50:09.968870 #15466]  INFO -- : worker=7 spawning...
+I, [2019-04-23T14:50:09.971048 #15491]  INFO -- : worker=5 spawned pid=15491
+I, [2019-04-23T14:50:09.971902 #15491]  INFO -- : worker=5 ready
+I, [2019-04-23T14:50:09.971634 #15494]  INFO -- : worker=6 spawned pid=15494
+I, [2019-04-23T14:50:09.972350 #15494]  INFO -- : worker=6 ready
+I, [2019-04-23T14:50:09.974651 #15466]  INFO -- : worker=8 spawning...
+I, [2019-04-23T14:50:09.977017 #15497]  INFO -- : worker=7 spawned pid=15497
+I, [2019-04-23T14:50:09.977961 #15497]  INFO -- : worker=7 ready
+I, [2019-04-23T14:50:09.980154 #15466]  INFO -- : worker=9 spawning...
+I, [2019-04-23T14:50:09.982556 #15500]  INFO -- : worker=8 spawned pid=15500
+I, [2019-04-23T14:50:09.983319 #15500]  INFO -- : worker=8 ready
+I, [2019-04-23T14:50:09.985569 #15466]  INFO -- : master process ready
+I, [2019-04-23T14:50:09.988116 #15503]  INFO -- : worker=9 spawned pid=15503
+I, [2019-04-23T14:50:09.988805 #15503]  INFO -- : worker=9 ready
+I, [2019-04-23T15:34:54.078943 #15466]  INFO -- : reaped #<Process::Status: pid 15476 exit 0> worker=0
+I, [2019-04-23T15:34:54.079650 #15466]  INFO -- : reaped #<Process::Status: pid 15479 exit 0> worker=1
+I, [2019-04-23T15:34:54.080022 #15466]  INFO -- : reaped #<Process::Status: pid 15482 exit 0> worker=2
+I, [2019-04-23T15:34:54.080352 #15466]  INFO -- : reaped #<Process::Status: pid 15485 exit 0> worker=3
+I, [2019-04-23T15:34:54.080679 #15466]  INFO -- : reaped #<Process::Status: pid 15488 exit 0> worker=4
+I, [2019-04-23T15:34:54.081014 #15466]  INFO -- : reaped #<Process::Status: pid 15491 exit 0> worker=5
+I, [2019-04-23T15:34:54.081350 #15466]  INFO -- : reaped #<Process::Status: pid 15494 exit 0> worker=6
+I, [2019-04-23T15:34:54.081671 #15466]  INFO -- : reaped #<Process::Status: pid 15497 exit 0> worker=7
+I, [2019-04-23T15:34:54.081992 #15466]  INFO -- : reaped #<Process::Status: pid 15500 exit 0> worker=8
+I, [2019-04-23T15:34:54.082319 #15466]  INFO -- : reaped #<Process::Status: pid 15503 exit 0> worker=9
+I, [2019-04-23T15:34:54.082889 #15466]  INFO -- : master complete

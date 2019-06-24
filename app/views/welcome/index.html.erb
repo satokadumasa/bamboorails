@@ -1,0 +1,61 @@
+        <h5><%= t 'top_page.news' %></h5>
+        <table class="table">
+          <tbody>
+            <% @newses.each do |news| %>
+              <tr>
+                <td style="width: 60%;">
+                  <%= link_to news.title, news %>
+                </td>
+                <td style="width: 20%;">
+                  <%= l(news.created_at, format: :short) %>
+                </td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+        <h5><%= t 'top_page.note' %></h5>
+        <div class="row">
+          <% @notes.each do |note| %>
+            <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+              <%= link_to note.title, note %>
+            </div>
+            <div class="col-lg-2 col-md-8 col-sm-8 col-8">
+              <%= note.user.user_info ? link_to(note.user.user_info.name, {controller: :user_infos, action: :show, id: note.user.user_info.name}) : 'User-' << note.user_id.to_s %>
+            </div>
+            <div class="col-lg-2 col-md-4 col-sm-4 col-4">
+              <%= l(note.created_at, format: :short) %>
+            </div>
+          <% end %>
+        </div>
+        <br>
+        <% if current_user %>
+          <h5><%= t 'top_page.follow_user_note' %></h5>
+          <div class="row">
+            <% @follow_user_notes.each do |follow_user_note| %>
+              <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <%=link_to follow_user_note.title, follow_user_note %><br>
+              </div>
+              <div class="col-lg-2 col-md-8 col-sm-8 col-8">
+                <%= follow_user_note.user.user_info ? link_to(follow_user_note.user.user_info.name, {controller: :user_infos, action: :show, id: follow_user_note.user.user_info.name}) : 'User-' << follow_user_note.user_id.to_s %>
+              </div>
+              <div class="col-lg-2 col-md-4 col-sm-4 col-4">
+                <%= l(follow_user_note.created_at, format: :short) %>
+              </div>
+            <% end %>
+          </div>
+          <h5><%= t 'top_page.bookmark' %></h5>
+          <div class="row">
+            <% @bookmarks.each do |bookmarks| %>
+              <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+                <%=link_to bookmarks.note.title, bookmarks.note %><br>
+              </div>
+              <div class="col-lg-2 col-md-8 col-sm-8 col-8">
+                <%= bookmarks.note.user.user_info ? link_to(bookmarks.note.user.user_info.name, {controller: :user_infos, action: :show, id: bookmarks.note.user.user_info.name}) : 'User-' << bookmarks.note.user_id.to_s %>
+              </div>
+              <div class="col-lg-2 col-md-4 col-sm-4 col-4">
+                <%= l(bookmarks.note.created_at, format: :short) %>
+              </div>
+            <% end %>
+          </div>        
+        <% end %>

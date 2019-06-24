@@ -1,0 +1,29 @@
+        <%= form_with(model: news, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if news.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(news.errors.count, "error") %> prohibited this news from being saved:</h2>
+              <ul>
+              <% news.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form.hidden_field :user_id, value: news.user_id ? news.user_id : current_user.id %>
+          <div class="row justify-content-start">
+            <div class="input-group">
+              <%= form.label :title, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+              <%= form.text_field :title, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+
+            <div class="input-group">
+              <%= form.label :body, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+              <%= form.text_area :body, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit t('news.new.submit'), {class: "btn btn-primary"} %>
+            </div>
+          </div>
+        <% end %>

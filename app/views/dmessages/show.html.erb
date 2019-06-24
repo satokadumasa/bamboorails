@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Sender:</strong>
+  <%= @dmessage.sender_id %>
+</p>
+
+<p>
+  <strong>Receiver:</strong>
+  <%= @dmessage.receiver_id %>
+</p>
+
+<p>
+  <strong>Received at:</strong>
+  <%= @dmessage.created_at %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @dmessage.title %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @dmessage.detail %>
+</p>
+
+<%= link_to 'Edit', edit_dmessage_path(@dmessage) %> |
+<%= link_to 'Back', dmessages_path %>

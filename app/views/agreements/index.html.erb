@@ -1,0 +1,44 @@
+      <p id="notice"><%= notice %></p>
+      <% if current_user && current_user.is_admin %>
+        <h1>Agreements</h1>
+        <table>
+          <thead>
+            <tr>
+              <th>Tiele</th>
+              <th>Outline</th>
+              <th>Detail</th>
+              <th colspan="3"></th>
+            </tr>
+          </thead>
+
+          <tbody>
+            <% @agreements.each do |agreement| %>
+              <tr>
+                <td><%= agreement.tiele %></td>
+                <td><%= agreement.outline %></td>
+                <td><%= agreement.detail %></td>
+                <td><%= link_to 'Show', agreement %></td>
+                <td><%= link_to 'Edit', edit_agreement_path(agreement) %></td>
+                <td><%= link_to 'Destroy', agreement, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <br>
+      <% else %>
+        <p>
+          <strong><%= @agreement.tiele %></strong>
+        </p>
+
+        <p>
+          <%= br @agreement.outline %>
+        </p>
+
+        <p>
+          <%= br @agreement.detail %>
+        </p>
+        <br>
+        <%= (current_user && current_user.is_admin) ?  link_to('Edit', edit_agreement_path(@agreement), class: 'btn btn-primary btn-sm') << ' | ' : '' %>
+        <%= link_to(t('agreements.back'), root_path, class: 'btn btn-primary btn-sm') %>
+      <% end %>
+      <%= (current_user && current_user.is_admin) ? link_to('New Agreement', new_agreement_path) : '' %>

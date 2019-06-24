@@ -1,0 +1,13 @@
+				<h1>Editing Note</h1>
+
+				<%= render 'form', note: @note %>
+				<div class="row" style="padding: 4px;">
+          <div class="col-lg-4 col-md-4 col-12" style="padding: 4px;">
+						<%= link_to "Back to 「" << @note.title << "」", @note, class: 'btn btn-primary btn-sm' %>
+					</div>
+				<div class="row">
+				</div>
+          <div class="col-lg-4 col-md-4 col-12" style="padding: 4px;">
+						<%= link_to 'Notes', notes_path, class: 'btn btn-primary btn-sm' %>
+					</div>
+				</div>

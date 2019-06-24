@@ -1,0 +1,17 @@
+        <p id="notice"><%= notice %></p>
+        <h1>News</h1>
+        <%= paginate @newses %>
+        <table class="table">
+          <tbody>
+            <% @newses.each do |news| %>
+              <tr>
+                <td style="width: 60%;"><%= link_to news.title, news %></td>
+                <td style="width: 20%;"><%= news.user.user_info.name %></td>
+                <td style="width: 20%;"><%= l(news.created_at, format: :short) %></td>
+              </tr>
+            <% end %>
+          </tbody>
+        </table>
+        <%= paginate @newses %>
+        <br>
+        <%= (current_user && current_user.is_admin) ? link_to(t('news.index.create_news'), new_news_path) : '' %>

@@ -1,0 +1,47 @@
+        <%= form_with(model: forum, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if forum.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(forum.errors.count, "error") %> prohibited this forum from being saved:</h2>
+
+              <ul>
+              <% forum.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <%= form.hidden_field :user_id, value: forum.user_id ? forum.user_id : current_user.id %>
+          <div class="row justify-content-start">
+            <div class="col-lg-2 col-3">
+              <%= form.label :title, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <div class="input-group">
+                <%= form.text_field :title, class: 'form-control login_label' %>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-3">
+              <%= form.label :forum_category_id, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <div class="input-group">
+                <%= form.collection_select 'forum_category_id', @categories, :id, :name %>
+              </div>
+            </div>
+
+            <div class="col-lg-2 col-3">
+              <%= form.label :detail, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <div class="input-group">
+                <%= form.text_area :detail, rows: 20, class: 'form-control login_label' %>
+              </div>
+            </div>
+
+            <div class="actions">
+              <%= form.submit name: nil, class: 'btn btn-primary btn-sm' %>
+            </div>
+          </div>
+        <% end %>

@@ -1,0 +1,37 @@
+        <%= form_with(model: note_comment, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if note_comment.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(note_comment.errors.count, "error") %> prohibited this note_comment from being saved:</h2>
+              <ul>
+                <% note_comment.errors.full_messages.each do |message| %>
+                  <li><%= message %></li>
+                <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row justify-content-center">
+            <div class="form-group col-11 col-md-11">
+              <%= form.label :user_id, class: 'control-label form-control-static login_label' %>
+              <%= form.number_field :user_id, value: note_comment.user_id ? note_comment.user_id : current_user.id, class: 'form-control' %>
+            </div>
+
+            <div class="form-group col-11 col-md-11">
+              <%= form.label :bbs_id, class: 'control-label form-control-static login_label' %>
+              <%= form.number_field :bbs_id, class: 'form-control' %>
+            </div>
+
+            <div class="form-group col-11 col-md-11">
+              <%= form.label :title, class: 'control-label form-control-static login_label' %>
+              <%= form.text_field :title, class: 'form-control' %>
+            </div>
+
+            <div class="form-group col-11 col-sm-11">
+              <%= form.label :body, class: 'control-label form-control-static login_label' %>
+              <%= form.text_area :body, class: 'form-control' %>
+            </div>
+            <div class="form-group col-11 col-sm-5">
+              <%= form.submit, {class: "btn btn-primary"} %>
+            </div>
+          </div>
+        <% end %>

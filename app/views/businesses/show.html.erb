@@ -1,0 +1,34 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @business.user_id %>
+</p>
+
+<p>
+  <strong>Career:</strong>
+  <%= @business.career_id %>
+</p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @business.name %>
+</p>
+
+<p>
+  <strong>Started at:</strong>
+  <%= @business.started_at %>
+</p>
+
+<p>
+  <strong>Ended at:</strong>
+  <%= @business.ended_at %>
+</p>
+
+<p>
+  <strong>Detail:</strong>
+  <%= @business.detail %>
+</p>
+
+<%= link_to 'Edit', edit_business_path(@business), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Back', businesses_path, class: 'btn btn-primary btn-sm' %>

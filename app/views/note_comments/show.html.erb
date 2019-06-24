@@ -1,0 +1,24 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @note_comment.user_id %>
+</p>
+
+<p>
+  <strong>Bbs:</strong>
+  <%= @note_comment.bbs_id %>
+</p>
+
+<p>
+  <strong>Title:</strong>
+  <%= @note_comment.title %>
+</p>
+
+<p>
+  <strong>Body:</strong>
+  <%= @note_comment.body %>
+</p>
+
+<%= link_to 'Edit', edit_note_comment_path(@note_comment), class: 'btn btn-primary btn-sm' %> |
+<%= link_to 'Back', note_comments_path, class: 'btn btn-primary btn-sm' %>

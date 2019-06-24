@@ -1,0 +1,85 @@
+        <div class="row main_contents">
+          <div class="col-lg-12 col-md-12 col-sm-12 col-12">
+            <%= form_with(model: user_info, local: true) do |form| %>
+              <% if user_info.errors.any? %>
+                <div id="error_explanation">
+                  <h2><%= pluralize(user_info.errors.count, "error") %> prohibited this user_info from being saved:</h2>
+
+                  <ul>
+                  <% user_info.errors.full_messages.each do |message| %>
+                    <li><%= message %></li>
+                  <% end %>
+                  </ul>
+                </div>
+              <% end %>
+            </div>
+            <%= form.hidden_field :user_id, value: current_user.id %>
+            <%= form.hidden_field :profile_image_id, value: current_user.user_info ? current_user.user_info.profile_image_id : nil %>
+            <div class="row justify-content-start">
+              <div class="col-lg-3 col-3">
+                <%= form.label :name, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <%= form.text_field :name, class: 'form-control' %>
+              </div>
+              <div class="col-lg-3 col-12">
+                <%= form.label :images, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <% if user_info.images %>
+                  <p>現在登録されている画像（削除するものはチェックしてください）</p>
+                  <% @user_info.images.each do |image| %>
+                    <%= form.check_box :image_ids, {:multiple => true}, image.id, false %>
+                    <div onclick="set_profile_image_id(<%=image.id %>)">
+                      <%= image_tag image, :size=>"300x300" %> <br>
+                    </div>
+                  <% end %>
+                <% end %>
+                <div class="input-group">
+                  <%= form.file_field :images, multiple: true %>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-12">
+                <%= form.label :mobile, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <div class="input-group">
+                  <%= form.text_field :mobile, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-12">
+                <%= form.label :pref_id, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <div class="input-group">
+                  <%= form.collection_select 'pref_id', @prefs, :id, :name %>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-12">
+                <%= form.label :postal_code, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <div class="input-group">
+                  <%= form.text_field :postal_code, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="col-lg-3 col-12">
+                <%= form.label :address, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <div class="input-group">
+                  <%= form.text_field :address, class: 'form-control' %>
+                </div>
+              </div>
+
+              <div class="col-12">
+                <%= link_to t('user_infos.edit.index'),root_path, class: 'btn btn-primary btn-sm' %> | 
+                <%= form.submit class: "btn btn-primary" %>
+              </div>
+            <% end %>
+          </div>
+        </div>

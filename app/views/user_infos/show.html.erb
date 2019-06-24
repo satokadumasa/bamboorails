@@ -1,0 +1,111 @@
+        <h3><%= t 'user_infos.show.page_name' %></h3>
+        <div class="row">
+          <div class="col-lg-6 col-md-6 col-12">
+            <div class="row">
+              <div class="col-lg-8 col-md-12 col-12">
+                <h3><%=@user_info.name %></h3>
+              </div>
+              <div class="col-lg-8 col-md-12 col-12">
+                <% if @user_info.images && @image %>
+                  <%= @image ? image_tag(@user_info.thumbnail(@image)) : '' %><br>
+                <% else %>
+                  <img src="/assets/nimage.png">
+                <% end %>
+              </div>
+            </div>
+            <% if (current_user && (current_user.id == @user_info.user_id || current_user.is_admin))  %>
+              <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                  <%= t 'user_infos.show.mobile' %>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12 order-lg-2">
+                  <%= @user_info.mobile %><br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                  <%= t 'user_infos.show.postal_code' %>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12 order-lg-2">
+                  <%= @user_info.postal_code %><br>
+                </div>
+              </div>
+              <div class="row">
+                <div class="col-lg-2 col-md-2 col-12">
+                  <%= t 'user_infos.show.address' %>
+                </div>
+                <div class="col-lg-4 col-md-4 col-12 order-lg-2">
+                  <%= @user_info.pref.name %> <%= @user_info.address %><br>
+                </div>
+              </div>
+            <% end %>
+            <div class="row">
+              <div class="col-4">
+          　　　<%= render '/follow_form' %>
+          　　　<%= render '/stats' %>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-4">
+                <%= (current_user && (current_user.id == @user_info.user_id || current_user.is_admin)) ? link_to(t('user_infos.show.edit'), edit_user_info_path(@user_info), class: 'btn btn-primary btn-sm') << ' | ' : '' %>
+                <%= link_to(t('agreements.back'), root_path, class: 'btn btn-primary btn-sm') %>
+              </div>
+            </div>
+          </div>
+          <hr>
+          <div class="col-lg-6 col-md-6 col-12">
+            <h4><%=@user_info.name %><%= t 'user_infos.show.tab1_name' %></h4>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a href="#tab1" class="nav-link" data-toggle="tab">Notes</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tab2" class="nav-link" data-toggle="tab">Albums</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="tab1" class="tab-pane active">
+                <% if @notes %>
+                  <% (0..4).each do |i| %>
+                    <% break unless @notes[i] %>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8 col-12 overflow-auto" style="word-break: break-all;">
+                        <b>
+                        <%=link_to(@notes[i].title.slice(0,24), note_path(@notes[i])) %>
+                        </b>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-12">
+                        <%=l(@notes[i].created_at, format: :short) %>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-lg-12 col-md-8 col-12 overflow-auto" style="word-break: break-all;">
+                        <%=br @notes[i].body.slice(0,128) %>
+                      </div>
+                    </div>
+                    <hr>
+                  <% end %>
+                <% else %>
+                  [None]
+                <% end %>
+              </div>
+              <div id="tab2" class="tab-pane">
+                <% if @user.albums %>
+                  <% @user.albums.each do |album| %>
+                    <div class="row">
+                      <div class="col-lg-8 col-md-8 col-12">
+                        <%=link_to(album.title, album_path(album)) %>
+                      </div>
+                      <div class="col-lg-4 col-md-4 col-12">
+                        <%=l(album.created_at, format: :short) %>
+                      </div>
+                    </div>
+                    <hr>
+                  <% end %>
+                <% else %>
+                  [None]
+                <% end %>
+              </div>
+            </div>
+          </div>
+        </div>

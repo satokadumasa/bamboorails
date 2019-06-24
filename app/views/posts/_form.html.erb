@@ -1,0 +1,33 @@
+        <%= form_with(model: post, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if post.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+
+              <ul>
+              <% post.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
+
+          <div class="row justify-content-start">
+            <%= form.label :images, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+            <div class="input-group">
+              <%= form.file_field :images, multiple: true %>
+            </div>
+            <%= form.label :title, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+            <div class="input-group">
+              <%= form.text_field :title, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+
+            <%= form.label :body, class: 'control-label form-control-static ccol-12 col-md-2 login_label' %>
+            <div class="input-group">
+              <%= form.text_area :body, rows: 20, class: 'form-control col-12 col-md-9 login_label' %>
+            </div>
+
+            <div class="actions">
+              <%= form.submit %>
+            </div>
+          </div>
+        <% end %>

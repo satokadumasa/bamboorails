@@ -1,0 +1,113 @@
+	      <div class="row">
+	        <div class="col-lg-4 col-md-12 col-sm-12 col-12 overflow-auto">
+					  <div class="contents_title overflow-auto">
+					  	「<%= @note.title %>」
+					  </div>
+        		<%= t 'notes.show.user_name' %>：<%= @note.user.user_info ? link_to(username(@note.user), {controller: :user_infos, action: :show, id: @note.user.user_info.name }) : 'User-' << @note.user_id.to_s %><br>
+						<hr>
+							<%= (current_user && (current_user.id == @note.user.id || current_user.is_admin)) ? link_to(t('notes.show.edit'), edit_note_path(@note), class: 'btn btn-primary btn-sm') << ' |' : '' %>
+							<%= link_to t('notes.show.back_to_list'), notes_path, class: 'btn btn-primary btn-sm' %>
+						<hr>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<div class="twitter">
+									<a href="//twitter.com/share" 
+									class="twitter-share-button" 
+									data-text="<%=@overview %>" 
+									data-url="<%=request.url %>" 
+									data-lang="ja" target="_blank">
+										Tweet
+									</a>
+								</div>
+							</li>
+							<li class="list-inline-item">
+								<div class="fb-share-button" 
+								data-href="<%=request.url %>" 
+								data-layout="button_count" data-size="small">
+									<a target="_blank" 
+									href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" 
+									class="fb-xfbml-parse-ignore">
+										Facebook
+									</a>
+								</div>
+							</li>
+						  <% if current_user %>
+								<li class="list-inline-item">
+							  	<%= form_with(model: @bookmark, local: true, id: 'bookmark') do |form| %>
+								    <%= form.hidden_field :user_id %>
+		  						  <%= form.hidden_field :note_id %>
+		  						  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+		  						  <input type="hidden" name="is_bookmarked" id="is_bookmarked" value="<%=current_user.is_bookmarked(@note.id) ? 'bookmarked' : '' %>">
+										<div class="btn-sm btn-<%=current_user.is_bookmarked(@note.id) > 0 ? 'success' : 'primary' %> bookmark">
+											<%=current_user.is_bookmarked(@note.id) > 0 ? 'bookmarked' : 'bookmark' %>
+										</div>
+		  						<% end %>
+								</li>
+							<% end %>
+						</ul>
+						<hr>
+						<div class="detail overflow-auto">
+						  <%= br @note.body %>
+						</div>
+						<hr>
+						<ul class="list-inline">
+							<li class="list-inline-item">
+								<div class="twitter">
+									<a href="//twitter.com/share" 
+									class="twitter-share-button" 
+									data-text="<%=@overview %>" data-url="<%=request.url %>" 
+									data-lang="ja" 
+									target="_blank">
+										Tweet
+									</a>
+								</div>
+							</li>
+							<li class="list-inline-item">
+								<div class="fb-share-button" 
+								data-href="<%=request.url %>" 
+								data-layout="button_count" data-size="small">
+									<a target="_blank" 
+									href="https://www.facebook.com/sharer/sharer.php?u=<%=request.url %>&src=sdkpreparse" 
+									class="fb-xfbml-parse-ignore">
+										Facebook
+									</a>
+								</div>
+							</li>
+						  <% if current_user %>
+								<li class="list-inline-item">
+							  	<%= form_with(model: @bookmark, local: true, id: 'bookmark') do |form| %>
+								    <%= form.hidden_field :user_id %>
+		  						  <%= form.hidden_field :note_id %>
+		  						  <%= hidden_field_tag "authenticity_token", form_authenticity_token %>
+		  						  <input type="hidden" name="is_bookmarked" id="is_bookmarked" value="<%=current_user.is_bookmarked(@note.id) ? 'bookmarked' : '' %>">
+										<div class="btn-sm btn-<%=current_user.is_bookmarked(@note.id) > 0 ? 'success' : 'primary' %> bookmark">
+											<%=current_user.is_bookmarked(@note.id) > 0 ? 'bookmarked' : 'bookmark' %>
+										</div>
+		  						<% end %>
+								</li>
+							<% end %>
+						</ul>
+					</div>
+	        <div class="col-lg-8 col-md-12 col-sm-12 col-12">
+						<hr>
+						<h4>
+							<%= t 'pages.index.list' %>
+						</h4>
+						<% if (current_user && (current_user.id == @note.user.id || current_user.is_admin)) %>
+							<%= link_to(t('notes.show.new_page'), new_note_page_path(note_id: @note), class: 'btn btn-primary btn-sm') %>
+						<% end %>
+						<hr>
+						<div class="row">
+							<% @note.pages.each do |page| %>
+				        <div class="col-8">
+									<%= link_to page.title, note_page_path(@note,page) %> 
+								</div>
+				        <div class="col-4">
+									[<%= l(page.created_at, format: :short) %>]<br>
+								</div>
+							<% end %>
+						</div>
+						<hr>
+					</div>
+				</div>
+				<hr>

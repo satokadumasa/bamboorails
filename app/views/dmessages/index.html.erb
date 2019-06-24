@@ -1,0 +1,43 @@
+            <h1>Dmessages</h1>
+            <ul class="nav nav-tabs">
+              <li class="nav-item">
+                <a href="#tab1" class="nav-link" data-toggle="tab">Send</a>
+              </li>
+              <li class="nav-item">
+                <a href="#tab2" class="nav-link" data-toggle="tab">Recive</a>
+              </li>
+            </ul>
+            <div class="tab-content">
+              <div id="tab1" class="tab-pane active">
+                <% @current_user.send_messages.each do |send_message| %>
+                  <% next if send_message.deleted_at %>
+                  <div class="row">
+                    <div class="col-8">
+                      <%= link_to send_message.title, send_message %>
+                    </div>
+                    <div class="col-4">
+                      <%=send_message.receiver.user_info ? send_message.receiver.user_info.name : 'User-' + send_message.receiver_id.to_s %>
+                    </div>
+                    <div class="col-12">
+                      <%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+              <div id="tab2" class="tab-pane">
+                <% current_user.recv_messages.each do |recv_message| %>
+                  <% next if recv_message.deleted_at %>
+                  <div class="row">
+                    <div class="col-8">
+                      <%= link_to recv_message.title, recv_message %>
+                    </div>
+                    <div class="col-4">
+                      <%=recv_message.receiver.user_info ? recv_message.sender.user_info.name : 'User-' + recv_message.sender_id.to_s %>
+                    </div>
+                    <div class="col-12">
+                      <%= link_to 'Destroy', recv_message, method: :delete, data: { confirm: 'Are you sure?' } %>
+                    </div>
+                  </div>
+                <% end %>
+              </div>
+            </div>

@@ -1,0 +1,9 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Name:</strong>
+  <%= @forum_category.name %>
+</p>
+
+<%= link_to 'Edit', edit_forum_category_path(@forum_category) %> |
+<%= link_to 'Back', forum_categories_path %>

@@ -22,7 +22,7 @@ Rails.application.configure do
   config.active_record.verbose_query_logs = true
   config.assets.debug = true
   config.assets.quiet = true
-  config.action_cable.url = 'wss://' + ENV['BAMBOO_HOST'] + '/cable'
+  config.action_cable.url = 'ws://' + ENV['BAMBOO_HOST'] + '/cable'
   # config.action_cable.allowed_request_origins = [ 'http://' + ENV['BAMBOO_HOST'] , /http:\/\/hesper.example.*/ ]
   config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], 'http://' + ENV['BAMBOO_HOST'] ]
   config.web_console.whitelisted_ips = '127.0.0.1'

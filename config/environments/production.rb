@@ -15,9 +15,10 @@ Rails.application.configure do
   config.i18n.fallbacks = true
   config.log_formatter = ::Logger::Formatter.new
   config.active_support.deprecation = :notify
-  config.action_cable.url = 'wss://' + ENV['BAMBOO_HOST'] + '/cable'
+  # config.action_cable.url = 'wss://' + ENV['BAMBOO_HOST'] + '/cable'
+  config.action_cable.url = 'ws://' + ENV['BAMBOO_HOST'] + ':3000/cable'
   config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], 'http://' + ENV['BAMBOO_HOST'] ]
-  config.web_console.whitelisted_ips = '127.0.0.1'
+  # config.web_console.whitelisted_ips = '127.0.0.1'
   if ENV["RAILS_LOG_TO_STDOUT"].present?
     logger           = ActiveSupport::Logger.new(STDOUT)
     logger.formatter = config.log_formatter

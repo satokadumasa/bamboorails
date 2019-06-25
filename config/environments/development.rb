@@ -55,13 +55,23 @@ Rails.application.configure do
   # Suppress logger output for asset requests.
   config.assets.quiet = true
 
+  # Action Cable
+  # config.action_cable.allowed_request_origins = [ 'http://hesper.example.com' ]
+  # config.action_cable.mount_path = nil
+  # config.action_cable.url = 'wss://example.com/cable'
+  config.action_cable.allowed_request_origins = [ 'http://hesper.example.com', /http:\/\/hesper.example.*/ ]
+  config.web_console.whitelisted_ips = '127.0.0.1'
+
+  # Websocket
+  # onfig.middleware.delete Rack::Lock
+
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
 
   # Use an evented file watcher to asynchronously detect changes in source code,
   # routes, locales, etc. This feature depends on the listen gem.
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
-  config.action_mailer.default_url_options = { host: 'www.hesper.site', :protocol => 'https' }
+  config.action_mailer.default_url_options = { host: 'hesper.example.com', :protocol => 'http' }
   config.action_mailer.smtp_settings   = {
     :enable_starttls_auto => true,
     :address => ENV['BAMBOO_MAIL_SERVER'],

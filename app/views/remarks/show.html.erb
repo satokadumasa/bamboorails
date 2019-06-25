@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Lounge:</strong>
+  <%= @remark.lounge_id %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @remark.user_id %>
+</p>
+
+<p>
+  <strong>Content:</strong>
+  <%= @remark.content %>
+</p>
+
+<%= link_to 'Edit', edit_remark_path(@remark) %> |
+<%= link_to 'Back', remarks_path %>

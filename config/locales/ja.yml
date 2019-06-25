@@ -170,6 +170,13 @@ ja:
       submit: 新規登録  
       back_to_list: 一覧へ戻る
 
+  lounges:
+    show:
+      title: ラウンジ名
+      overview: 説明
+      user_id: オーナー
+      submit: 発言
+
   activerecord:
     models:
       user: ユーザー # view側： User.model_name.human => "ユーザ" / t("activerecord.models.user")と同じ

@@ -1,0 +1,43 @@
+
+				<div class="row">
+					<div class="col-8">
+					  <%=t('lounges.show.title') %><%= @lounge.title %>
+					</div>
+					<div class="col-4">
+					  <%=t('lounges.show.user_id') %>:<%= username(@lounge.user) %>
+					</div>
+				</div>
+				<div class="row">
+					<div class="col-12">
+						<%= current_user && current_user.id == @lounge.user_id ? link_to('Edit', edit_lounge_path(@lounge))  + ' | ' : '' %>
+						<%= link_to 'Back', lounges_path %>
+					</div>
+				</div>
+
+
+
+				<%= form_for([@lounge, @lounge.remarks.build], html: {class: 'justify-content-start', id: 'remark_post'}) do |f| %>
+		      <div class="modal-body">
+	          <%= f.hidden_field :user_id, value: current_user.id %>
+	          <%= f.hidden_field :lounge_id, value: @lounge.id %>
+	          <input type="hidden" name="last_posted_at" id="last_posted_at" value="<%= current_user.last_sign_in_at ? current_user.last_sign_in_at : Time.current %>">
+					  <div class="field">
+	            <div class="input-group">
+					    	<%= f.text_area :content, class: 'control-label form-control-static col-12 col-md-12' %>
+					    </div>
+					  </div>
+		      </div>
+		      <div class="btn btn-primary" id="remark_btn">
+		      	<%=t('lounges.show.submit') %>
+		      </div>
+				<% end %>
+				<hr>
+				<div class="row" id="remarks">
+					<% if @remarks %>
+						<% @remarks.each do |remark| %>
+							<div class="row" id="remarks"><div class="col-4"><%=username(remark.user) %>:<%=remark.user.id %></div>
+							<div class="col-8"><%=remark.created_at %></div>
+							<div class="col-12"><%=remark.content %><hr>
+						<% end %>
+					<% end %>
+				</div>

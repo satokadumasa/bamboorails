@@ -12,6 +12,7 @@ class User < ApplicationRecord
   has_many :note_comments
   has_many :schedules
 	has_many :careers
+  has_many :lounges
 
   has_many :bookmarks
   has_many :watch_forums

@@ -1,4 +1,8 @@
 Rails.application.routes.draw do
+  mount ActionCable.server, at: '/cable'
+  resources :lounges do
+    resources :remarks
+  end
   resources :dmessages
   root to: 'welcome#index'
   mount RailsAdmin::Engine => '/admin', as: 'rails_admin'

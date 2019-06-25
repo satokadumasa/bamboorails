@@ -10,20 +10,23 @@
   <meta property="og:description"   content="<%=@overview %>" />
   <meta property="og:image"         content="https://www.hesper.site/assets/kotetsu.jpg" />
   <meta name="viewport" content="width=device-width,initial-scale=1">
+  <script>
+    var base_url = '<%=root_url(only_path: false) %>';
+  </script>
   <%= javascript_include_tag('application') %>
   <!--
   <script>
-  $(document).ready(function() {
-    $('.drawer').drawer();
-  });
+    $(document).ready(function() {
+      $('.drawer').drawer();
+    });
   </script>
   // -->
-  <!-- drawer.css -->
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
-  <!-- jquery & iScroll -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
-  <!-- drawer.js -->
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
+<!-- drawer.css -->
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/css/drawer.min.css">
+<!-- jquery & iScroll -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/iScroll/5.2.0/iscroll.min.js"></script>
+<!-- drawer.js -->
+<script src="https://cdnjs.cloudflare.com/ajax/libs/drawer/3.2.2/js/drawer.min.js"></script>
 <%= csrf_meta_tags %>
 <%= csp_meta_tag %>
 <%= stylesheet_link_tag('application', media: 'all') %>

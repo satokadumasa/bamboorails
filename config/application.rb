@@ -29,9 +29,9 @@ module Bamboo
 
     # Don't generate system test files.
     config.generators.system_tests = nil
-    config.site_name = "Celaeno"
+    config.site_name = ENV['BAMBOO_SITE_NAME']
     config.active_record.default_timezone = :local
-    config.time_zone = 'Tokyo'
+    config.time_zone = ENV['BAMBOO_TIMEZONE']
     # 有効にする言語のホワイトリスト
     config.i18n.available_locales = %i(ja en)
 

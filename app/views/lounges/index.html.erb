@@ -1,0 +1,24 @@
+        <h1>Lounges</h1>
+          <div class="row">
+            <div class="col-12">
+              <%= link_to 'New Lounge', new_lounge_path, class: 'btn btn-primary' %>
+            </div>
+          </div>
+        <% @lounges.each do |lounge| %>
+          <hr>
+          <div class="row">
+            <div class="col-4">
+              <%= link_to lounge.title, lounge %>
+            </div>
+            <div class="col-4">
+              <%= username(lounge.user) %>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-12">
+              <%= br lounge.overview %>
+            </div>
+          </div>
+        <% end %>
+        <hr>
+

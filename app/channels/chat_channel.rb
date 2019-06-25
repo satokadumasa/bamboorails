@@ -1,7 +1,7 @@
 class ChatChannel < ApplicationCable::Channel
   def subscribed
   	logger.debug("ChatChannel.subscribed")
-    stream_from "chat_remark"
+    stream_from "chat_channel"
   end
 
   def unsubscribed
@@ -13,10 +13,10 @@ class ChatChannel < ApplicationCable::Channel
     remark.lounge_id = data['lounge_id']
     remark.user_id = data['user_id']
     remark.content = data['content']
-  	logger.debug("ChatChannel.remark remark:" + remark.inspect)
+  	# logger.debug("ChatChannel.remark remark:" + remark.inspect)
     remark.save
-    remarks = Remark.eager_load(user: :user_info).where('remarks.created_at > ? ', data['last_posted_at']).where(lounge_id: data['lounge_id'])
+    remarks = Remark.eager_load(user: :user_info).where('remarks.created_at > ? ', data['last_posted_at']).where(lounge_id: data['lounge_id']).order(:created_at)
     @remarks = remark.resp_with_json(remarks)
-    ActionCable.server.broadcast('chat_remark',@remarks)
+    ActionCable.server.broadcast('chat_channel',@remarks)
   end
 end

@@ -20,7 +20,7 @@
 		      <div class="modal-body">
 	          <%= f.hidden_field :user_id, value: current_user.id %>
 	          <%= f.hidden_field :lounge_id, value: @lounge.id %>
-	          <input type="hidden" name="last_posted_at" id="last_posted_at" value="<%= current_user.last_sign_in_at ? current_user.last_sign_in_at : Time.current %>">
+	          <input type="hidden" name="last_posted_at" id="last_posted_at" value="<%=@last_posted_at %>">
 					  <div class="field">
 	            <div class="input-group">
 					    	<%= f.text_area :content, class: 'control-label form-control-static col-12 col-md-12' %>

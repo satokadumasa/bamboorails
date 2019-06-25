@@ -10,6 +10,9 @@ class LoungesController < ApplicationController
   # GET /lounges/1
   # GET /lounges/1.json
   def show
+    if current_user
+      @last_posted_at = current_user.last_sign_in_at ? current_user.last_sign_in_at : Time.current
+    end
   end
 
   # GET /lounges/new

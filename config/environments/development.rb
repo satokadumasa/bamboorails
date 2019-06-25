@@ -59,7 +59,8 @@ Rails.application.configure do
   # config.action_cable.allowed_request_origins = [ 'http://hesper.example.com' ]
   # config.action_cable.mount_path = nil
   # config.action_cable.url = 'wss://example.com/cable'
-  config.action_cable.allowed_request_origins = [ 'http://hesper.example.com', /http:\/\/hesper.example.*/ ]
+  # config.action_cable.allowed_request_origins = [ 'http://' + ENV['BAMBOO_HOST'] , /http:\/\/hesper.example.*/ ]
+  config.action_cable.allowed_request_origins = [ 'http://' + ENV['BAMBOO_HOST'] ]
   config.web_console.whitelisted_ips = '127.0.0.1'
 
   # Websocket

@@ -142,5 +142,4 @@ $(function() {
   //   }); 
   // }
 });
-//= require websocket_rails/main
 

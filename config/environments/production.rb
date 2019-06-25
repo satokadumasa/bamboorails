@@ -86,8 +86,9 @@ Rails.application.configure do
   config.log_formatter = ::Logger::Formatter.new
 
   # Action Cable
-  config.action_cable.allowed_request_origins = [ 'https://www.hesper.site', /https:\/\/www.hesper.*/ ]
-  config.web_console.whitelisted_ips = '127.0.0.1'
+  # config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], /https:\/\/www.hesper.*/ ]
+  config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'] ]
+  # config.web_console.whitelisted_ips = '127.0.0.1'
 
   # Use a different logger for distributed setups.
   # require 'syslog/logger'
@@ -102,7 +103,7 @@ Rails.application.configure do
   # Do not dump schema after migrations.
   # config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   config.active_record.dump_schema_after_migration = false
-  config.action_mailer.default_url_options = { host: 'www.hesper.site', :protocol => 'https' }
+  config.action_mailer.default_url_options = { host: ENV['BAMBOO_HOST'], :protocol => 'https' }
   #config.action_mailer.default_url_options = { host: 'hesper.example.com', :protocol => 'http' }
   config.action_mailer.smtp_settings = {
     :enable_starttls_auto => true,

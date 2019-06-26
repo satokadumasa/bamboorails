@@ -10,7 +10,7 @@ threads threads_count, threads_count
 # Specifies the `port` that Puma will listen on to receive requests; default is 3000.
 #
 port        ENV.fetch("PORT") { 3000 }
-# bind "unix://" << ENV['RBENV_DIR'] <<"/tmp/sockets/puma.sock"
+#bind "unix://" << ENV['RBENV_DIR'] <<"/tmp/sockets/puma.sock"
 
 # Specifies the `environment` that Puma will run in.
 #
@@ -22,7 +22,9 @@ environment ENV.fetch("RAILS_ENV") { "production" }
 # Workers do not work on JRuby or Windows (both of which do not support
 # processes).
 #
-workers ENV.fetch("WEB_CONCURRENCY") { 20 }
+workers ENV.fetch("WEB_CONCURRENCY") { 2 }
+daemonize true
+pidfile ENV['RBENV_DIR'] + "/tmp/pids/puma.pid"
 
 # Use the `preload_app!` method when specifying a `workers` number.
 # This directive tells Puma to first boot the application and load code

@@ -1,6 +1,7 @@
 development:
   # adapter: async
   adapter: redis
+  url: redis://localhost:6379
   channel_prefix: bamboo_production
 
 test:
@@ -9,4 +10,5 @@ test:
 production:
   # adapter: async
   adapter: redis
+  url: redis://localhost:6379
   channel_prefix: bamboo_production

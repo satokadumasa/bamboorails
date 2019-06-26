@@ -28,6 +28,7 @@ $(function() {
           colum = colum + data[i]['content'];
           colum = colum + '<hr>';
           colum = colum + '</div>';
+          $('#last_posted_at').val(data[i]['created_at']);
           if($('#remarks').is('*')) {
             $('#remarks').prepend(colum);
           }

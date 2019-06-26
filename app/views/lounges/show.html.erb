@@ -1,4 +1,4 @@
-
+				<div id="room_name" style="display: none;">room_<%=@lounge.id %></div>
 				<div class="row">
 					<div class="col-8">
 					  <%=t('lounges.show.title') %><%= @lounge.title %>
@@ -13,8 +13,6 @@
 						<%= link_to 'Back', lounges_path %>
 					</div>
 				</div>
-
-
 
 				<%= form_for([@lounge, @lounge.remarks.build], html: {class: 'justify-content-start', id: 'remark_post'}) do |f| %>
 		      <div class="modal-body">

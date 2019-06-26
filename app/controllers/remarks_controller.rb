@@ -26,13 +26,9 @@ class RemarksController < ApplicationController
   # POST /remarks
   # POST /remarks.json
   def create
-    logger.debug("RemarksController.create params:" + params.inspect)
-    remark = Remark.new(remark_params)
-    remark.save
-    # remarks = Remark.eager_load(user: :user_info).where('remarks.created_at > ? ', params[:last_posted_at]).where(lounge_id: remark_params[:lounge_id])
-    # @remarks = remark.resp_with_json(remarks)
-    # logger.debug("RemarksController.create remarks:" + @remarks.inspect)
-    # render json: @remarks
+    @remark = Remark.new(remark_params)
+    @remark.save
+    render json: @remark
   end
 
   # PATCH/PUT /remarks/1

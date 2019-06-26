@@ -52,8 +52,6 @@ class UserInfosController < ApplicationController
   # PATCH/PUT /user_infos/1
   # PATCH/PUT /user_infos/1.json
   def update
-    logger.debug("params:" << params.inspect)
-    logger.debug("image_ids:" << params[:user_info][:image_ids].inspect)
     @prefs = Pref.all()
     purge_images(params[:user_info][:image_ids])
 

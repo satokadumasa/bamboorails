@@ -34,24 +34,12 @@ class PagesController < ApplicationController
   # POST /pages
   # POST /pages.json
   def create
-    logger.debug('PagesController.create')
-
     Note.transaction do
       @note = Note.find(params[:page][:note_id])
       @page = @note.pages.create(page_params)
     end
     redirect_to note_path(@note)
 
-    # respond_to do |format|
-    #   if @page.save
-    #     redirect_to note_path(@note)
-    #     format.html { redirect_to @page, notice: 'Page was successfully created.' }
-    #     format.json { render :show, status: :created, location: @page }
-    #   else
-    #     format.html { render :new }
-    #     format.json { render json: @page.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # PATCH/PUT /pages/1
@@ -62,15 +50,6 @@ class PagesController < ApplicationController
       @page.update(page_params)
     end
     redirect_to note_path(@page.note_id)
-    # respond_to do |format|
-    #   if @page.update(page_params)
-    #     format.html { redirect_to @page, notice: 'Page was successfully updated.' }
-    #     format.json { render :show, status: :ok, location: @page }
-    #   else
-    #     format.html { render :edit }
-    #     format.json { render json: @page.errors, status: :unprocessable_entity }
-    #   end
-    # end
   end
 
   # DELETE /pages/1
@@ -81,10 +60,6 @@ class PagesController < ApplicationController
     @pages = @note.pages.find(params[:id])
     @pages.destroy
     redirect_to article_path(@note)
-    # respond_to do |format|
-    #   format.html { redirect_to pages_url, notice: 'Page was successfully destroyed.' }
-    #   format.json { head :no_content }
-    # end
   end
 
   private

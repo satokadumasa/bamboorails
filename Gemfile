@@ -11,6 +11,7 @@ gem 'rails', '~> 5.2.3'
 gem 'mysql2'
 # Use Puma as the app server
 gem 'puma', '~> 3.11'
+# gem 'unicorn'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -68,9 +69,10 @@ gem 'bootstrap-will_paginate'
 #backbone.js
 gem 'rails-assets-lodash'
 gem 'rails-assets-backbone'
-gem 'faye-websocket'
-gem 'websocket-rails'
-
+group :production do #開発環境のみ
+	gem 'faye-websocket'
+	gem 'websocket-rails'
+end
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

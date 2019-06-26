@@ -16,9 +16,7 @@ class AlbumsController < ApplicationController
     @image_urls = []
     @album.images.each do |image|
       @image_urls.push({url: url_for(image).gsub(request.base_url, '')})
-      logger.debug("AlbumsController.image_urls image:" << image.inspect)
     end
-    logger.debug("AlbumsController.image_urls image_urls:" << @image_urls.inspect)
     render json: @image_urls
   end
 
@@ -50,7 +48,6 @@ class AlbumsController < ApplicationController
   # PATCH/PUT /albums/1
   # PATCH/PUT /albums/1.json
   def update
-    logger.debug("AlbumsController.update params:" << params.inspect)
     purge_images(params[:album][:image_ids])
     respond_to do |format|
       if @album.update(album_params)

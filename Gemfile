@@ -68,8 +68,8 @@ gem 'bootstrap-will_paginate'
 #backbone.js
 gem 'rails-assets-lodash'
 gem 'rails-assets-backbone'
-# gem 'faye-websocket'
-# gem 'websocket-rails'
+gem 'faye-websocket'
+gem 'websocket-rails'
 
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console

@@ -56,6 +56,7 @@
           <%=link_to 'Note', notes_path, class: 'btn-sm' %>
           <%=link_to 'Forum', forums_path, class: 'btn-sm' %>
           <% if current_user %>
+            <%=link_to 'Lounge', lounges_path, class: 'btn-sm' %>
             <% if @new_recv_count %>
               <a href="<%=dmessages_path %>" class='btn-sm'>
                 Mail

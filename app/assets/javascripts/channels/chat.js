@@ -2,15 +2,39 @@
 $(function() {
   if( $('#room_name').is('*')) {
     var room_name = $('#room_name').text();
+    var username = $('#username').text();
 
-    App.chat = App.cable.subscriptions.create({channel: "ChatChannel", room: room_name})
+    App.chat = App.cable.subscriptions.create({channel: "ChatChannel", room: room_name, username: username})
     
     App.chat.connected = function() {
         // Called when the subscription is ready for use on the server
+      var authenticity_token = $('input[name="authenticity_token"]').val();
+      var data = {
+        'room': room_name,
+        'lounge_id': $('#remark_lounge_id').val(),
+        'user_id': $('#remark_user_id').val(),
+        'content': '[' + username + ']さんが入室しました。',
+        'last_posted_at': $('#last_posted_at').val(),
+        'authenticity_token': authenticity_token
+      };
+      $('#last_posted_at').val(last_posted_at())
+      $('#remark_content').val('');
+      App.chat.remark(data);
     };
 
     App.chat.disconnected = function(){
-
+      var authenticity_token = $('input[name="authenticity_token"]').val();
+      var data = {
+        'room': room_name,
+        'lounge_id': $('#remark_lounge_id').val(),
+        'user_id': $('#remark_user_id').val(),
+        'content': '[' + username + ']さんが退室しました。',
+        'last_posted_at': $('#last_posted_at').val(),
+        'authenticity_token': authenticity_token
+      };
+      $('#last_posted_at').val(last_posted_at())
+      $('#remark_content').val('');
+      App.chat.remark(data);
     }
 
     App.chat.received = function(data) {

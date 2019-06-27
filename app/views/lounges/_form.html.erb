@@ -1,29 +1,33 @@
-<%= form_with(model: lounge, local: true) do |form| %>
-  <% if lounge.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(lounge.errors.count, "error") %> prohibited this lounge from being saved:</h2>
+        <%= form_with(model: lounge, local: true, html: {class: 'justify-content-start'}) do |form| %>
+          <% if lounge.errors.any? %>
+            <div id="error_explanation">
+              <h2><%= pluralize(lounge.errors.count, "error") %> prohibited this lounge from being saved:</h2>
 
-      <ul>
-      <% lounge.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
-    </div>
-  <% end %>
+              <ul>
+              <% lounge.errors.full_messages.each do |message| %>
+                <li><%= message %></li>
+              <% end %>
+              </ul>
+            </div>
+          <% end %>
 
-  <%= form.hidden_field :user_id, value: current_user.id %>
+          <%= form.hidden_field :user_id, value: current_user.id %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :overview %>
-    <%= form.text_area :overview %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+          <div class="row justify-content-start">
+            <div class="col-lg-2 col-3">
+              <%= form.label :title, class: 'form-control login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <%= form.text_field :title, class: 'control-label form-control-static login_label' %>
+            </div>
+            <div class="col-lg-2 col-3">
+              <%= form.label :overview, class: 'form-control login_label' %>
+            </div>
+            <div class="col-lg-10 col-9">
+              <%= form.text_area :overview, rows: 5, class: 'form-control login_label' %>
+            </div>
+          </div>
+          <div class="actions">
+            <%= form.submit %>
+          </div>
+        <% end %>

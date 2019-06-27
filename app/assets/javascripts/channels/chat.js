@@ -34,7 +34,7 @@ $(function() {
         'authenticity_token': authenticity_token
       };
       $('#last_posted_at').val(last_posted_at())
-      $('#remark_content').val('');
+      location.href = base_url + 'lounges/'
       App.chat.remark(data);
       return this.perform('unsubscribed', data);
 
@@ -45,8 +45,8 @@ $(function() {
         for (var i = 0 ; i < data.length; i++) {
           var colum = "";
           colum = '<div class="col-4">';
-          colum = colum + '<img src="' + data[i]['image_url'] + '" width="30" height="30">';
-          colum = colum + '<div class="view_user_info" onclick="view_user_info(this)">' + data[i]['user_name'] + '</div>' ;
+          colum = colum + '<div style="float: left;"><img src="' + data[i]['image_url'] + '" width="30" height="30"></div>';
+          colum = colum + '<div class="view_user_info" style="float: left;" onclick="view_user_info(this)">' + data[i]['user_name'] + '</div>' ;
           colum = colum + '</div>';
           colum = colum + '<div class="col-8">';
           colum = colum + data[i]['created_at'];

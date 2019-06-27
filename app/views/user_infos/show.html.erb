@@ -13,6 +13,14 @@
                 <% end %>
               </div>
             </div>
+            <div class="row">
+              <div class="col-lg-2 col-md-2 col-12">
+                <%= t 'user_infos.show.user_name' %>
+              </div>
+              <div class="col-lg-8 col-md-12 col-12">
+                <%=@user_info.user_name %>
+              </div>
+            </div>
             <% if (current_user && (current_user.id == @user_info.user_id || current_user.is_admin))  %>
               <div class="row">
                 <div class="col-lg-2 col-md-2 col-12">

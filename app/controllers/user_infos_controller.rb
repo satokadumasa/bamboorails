@@ -11,11 +11,11 @@ class UserInfosController < ApplicationController
   # GET /user_infos/1
   # GET /user_infos/1.json
   def show
-    if params[:id] =~ /^[0-9]+$/
-      @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).find(params[:id])
-    else
-      @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(name: params[:id]).first()
-    end
+    # if params[:id] =~ /^[0-9]+$/
+    #   @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).find(params[:id])
+    # else
+    #   @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(user_name: params[:id]).first()
+    # end
     @notes = Note.where(user_id: @user_info.user_id)
     @notes = @notes.where(public_status: [0,1]) unless (current_user && current_user.id == @user_info.user_id)
     @notes = @notes.order(created_at: :desc)
@@ -86,7 +86,7 @@ class UserInfosController < ApplicationController
       if params[:id] =~ /^[0-9]+$/
         @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).find(params[:id])
       else
-        @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(name: params[:id]).first()
+        @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(user_name: params[:id]).first()
       end
       @image = @user_info.profile_image_id ? @user_info.images.find(@user_info.profile_image_id) : nil
       @prefs = Pref.all()

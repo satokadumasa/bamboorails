@@ -1,4 +1,5 @@
 class Remark < ApplicationRecord
+  include Rails.application.routes.url_helpers
 	belongs_to :user
 	belongs_to :lounge
 
@@ -10,7 +11,8 @@ class Remark < ApplicationRecord
   	data = []
   	remarks.each do | remark |
   		remark.user.user_info
-  		datum = {id:remark.id, lounge_id:remark.id, content:remark.content, created_at:remark.created_at, user_name:remark.user.user_info ? remark.user.user_info.name : 'User-' + remark.user.id.to_s}
+      image_url = remark.user.user_info && remark.user.user_info.images.count > 0 ? url_for(remark.user.user_info.images[0]) : '/assets/nimage.png';
+  		datum = {id:remark.id, lounge_id:remark.id, content:remark.content, created_at:remark.created_at, user_name:remark.user.user_info ? remark.user.user_info.name : 'User-' + remark.user.id.to_s, image_url:image_url}
   		data << datum
   	end
   	return data

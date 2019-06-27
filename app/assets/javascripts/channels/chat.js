@@ -3,8 +3,9 @@ $(function() {
   if( $('#room_name').is('*')) {
     var room_name = $('#room_name').text();
     var username = $('#username').text();
+    var user_id = $('#user_id').text();
 
-    App.chat = App.cable.subscriptions.create({channel: "ChatChannel", room: room_name, username: username})
+    App.chat = App.cable.subscriptions.create({channel: "ChatChannel", room: room_name, username: username, user_id: user_id})
     
     App.chat.connected = function() {
         // Called when the subscription is ready for use on the server
@@ -35,6 +36,8 @@ $(function() {
       $('#last_posted_at').val(last_posted_at())
       $('#remark_content').val('');
       App.chat.remark(data);
+      return this.perform('unsubscribed', data);
+
     }
 
     App.chat.received = function(data) {
@@ -42,8 +45,8 @@ $(function() {
         for (var i = 0 ; i < data.length; i++) {
           var colum = "";
           colum = '<div class="col-4">';
-          colum = colum + data[i]['user_name'] + ':';
-          colum = colum + data[i]['id'];
+          colum = colum + '<img src="' + data[i]['image_url'] + '" width="30" height="30">';
+          colum = colum + '<div class="view_user_info" onclick="view_user_info(this)">' + data[i]['user_name'] + '</div>' ;
           colum = colum + '</div>';
           colum = colum + '<div class="col-8">';
           colum = colum + data[i]['created_at'];
@@ -52,6 +55,7 @@ $(function() {
           colum = colum + data[i]['content'];
           colum = colum + '<hr>';
           colum = colum + '</div>';
+          
           $('#last_posted_at').val(data[i]['created_at']);
           if($('#remarks').is('*')) {
             $('#remarks').prepend(colum);
@@ -78,8 +82,32 @@ $(function() {
       App.chat.remark(data);
       return;    
     });
+    if( $('#leave_btn').is('*')) {
+      $('#leave_btn').on('click', function(){
+        App.chat.disconnected();
+      });
+    }
   }
 });
+
+function view_user_info(obj) {
+  // var username = $(obj).text();
+  // var url = base_url + '-/' + username + '.json';
+  // $.ajax({
+  //   url: url,
+  //   type: 'get',
+  //   data:{
+  //   }
+  // })
+  // .done( (data) => {
+  //   alert(data);
+  // })
+  // .fail( (data) => {
+  //   alert('view_user_info fail')
+  // })
+  // .always( (data) => {
+  // });
+}
 
 function last_posted_at() {
   var weeks = new Array('日','月','火','水','木','金','土');

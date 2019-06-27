@@ -27,6 +27,8 @@ Rails.application.configure do
   config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], 'http://' + ENV['BAMBOO_HOST'] ]
   config.web_console.whitelisted_ips = '127.0.0.1'
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
+  Rails.application.routes.default_url_options[:host] = ENV['BAMBOO_HOST']
+  # Rails.application.routes.default_url_options[:port] = 3000
   config.action_mailer.default_url_options = { host: 'hesper.example.com', :protocol => 'http' }
   config.action_mailer.smtp_settings   = {
     :enable_starttls_auto => true,

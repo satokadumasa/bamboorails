@@ -20,6 +20,10 @@ class UserInfosController < ApplicationController
     @notes = @notes.where(public_status: [0,1]) unless (current_user && current_user.id == @user_info.user_id)
     @notes = @notes.order(created_at: :desc)
     @user = @user_info.user
+    respond_to do |format|
+      format.html { render :show }
+      format.json { render :show, status: :ok, location: @user_info }
+    end
   end
 
   # GET /user_infos/new

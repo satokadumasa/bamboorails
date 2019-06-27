@@ -21,8 +21,8 @@
             		<%= @album.description %>
             	</div>
             	<div class="album_info_row">
-								<%= link_to 'Back', albums_path, class: 'btn btn-primary btn-sm' %> | 
-								<%= link_to('Edit', edit_album_path(@album), class: 'btn btn-primary btn-sm') << ' | ' if current_user && current_user.id = @album.user.id %>
-				        <%= link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
+                    <%= link_to 'Back', albums_path, class: 'btn btn-primary btn-sm' %> | 
+                    <%= link_to('Edit', edit_album_path(@album), class: 'btn btn-primary btn-sm') << ' | ' if current_user && current_user.id = @album.user.id %>
+                    <%= link_to 'Destroy', @album, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-sm' %>
             	</div>
             </div>

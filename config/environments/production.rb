@@ -17,6 +17,8 @@ Rails.application.configure do
   config.active_support.deprecation = :notify
   config.action_cable.url = 'ws://127.0.0.1:3001/cable'
   config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], /https:\/\/www.hesper.*/ ]
+  Rails.application.routes.default_url_options[:host] = ENV['BAMBOO_HOST']
+  # Rails.application.routes.default_url_options[:port] = 3000
   #config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'], 'http://' + ENV['BAMBOO_HOST'] ]
   #config.action_cable.allowed_request_origins = [ 'https://' + ENV['BAMBOO_HOST'] ]
   #config.web_console.whitelisted_ips = '127.0.0.1'

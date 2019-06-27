@@ -1,5 +1,6 @@
 				<div id="room_name" style="display: none;">room_<%=@lounge.id %></div>
 				<div id="username" style="display: none;"><%=username(current_user) %></div>
+				<div id="user_id" style="display: none;"><%=current_user.id %></div>
 				<div class="row">
 					<div class="col-8">
 					  <%=t('lounges.show.title') %><%= @lounge.title %>
@@ -28,6 +29,9 @@
 		      </div>
 		      <div class="btn btn-primary" id="remark_btn">
 		      	<%=t('lounges.show.submit') %>
+		      </div>
+		      <div class="btn btn-primary" id="leave_btn">
+		      	退室
 		      </div>
 				<% end %>
 				<hr>

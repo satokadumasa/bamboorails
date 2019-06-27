@@ -2,7 +2,7 @@
 $(function() {
   if( $('#room_name').is('*')) {
     var room_name = $('#room_name').text();
-    var username = $('#username').text();
+    var username = $('#user_name').text();
     var user_id = $('#user_id').text();
 
     App.chat = App.cable.subscriptions.create({channel: "ChatChannel", room: room_name, username: username, user_id: user_id})

@@ -17,7 +17,13 @@
             <%= form.hidden_field :profile_image_id, value: current_user.user_info ? current_user.user_info.profile_image_id : nil %>
             <div class="row justify-content-start">
               <div class="col-lg-3 col-3">
-                <%= form.label :name, class: 'control-label form-control-static login_label' %>
+                <%= form.label :user_name, class: 'control-label form-control-static login_label' %>
+              </div>
+              <div class="col-lg-9 col-12">
+                <%= form.text_field :user_name, class: 'form-control' %>
+              </div>
+              <div class="col-lg-3 col-12">
+                <%= form.label :images, class: 'control-label form-control-static login_label' %>
               </div>
               <div class="col-lg-9 col-12">
                 <%= form.text_field :name, class: 'form-control' %>

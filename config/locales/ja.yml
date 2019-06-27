@@ -186,6 +186,7 @@ ja:
       user_info:
         id: ID
         name: 名前 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
+        user_name: ユーザー名
         pref_id: 都道府県
         mobile: 携帯電話
         postal_code: 郵便番号

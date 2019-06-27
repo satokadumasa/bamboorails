@@ -16,7 +16,7 @@
                       <%= link_to send_message.title, send_message %>
                     </div>
                     <div class="col-4">
-                      <%=send_message.receiver.user_info ? send_message.receiver.user_info.name : 'User-' + send_message.receiver_id.to_s %>
+                      <%=send_message.receiver.user_info ? send_message.receiver.user_info.user_name : 'User-' + send_message.receiver_id.to_s %>
                     </div>
                     <div class="col-12">
                       <%= link_to 'Destroy', send_message, method: :delete, data: { confirm: 'Are you sure?' } %>
@@ -32,7 +32,7 @@
                       <%= link_to recv_message.title, recv_message %>
                     </div>
                     <div class="col-4">
-                      <%=recv_message.receiver.user_info ? recv_message.sender.user_info.name : 'User-' + recv_message.sender_id.to_s %>
+                      <%=recv_message.receiver.user_info ? recv_message.sender.user_info.user_name : 'User-' + recv_message.sender_id.to_s %>
                     </div>
                     <div class="col-12">
                       <%= link_to 'Destroy', recv_message, method: :delete, data: { confirm: 'Are you sure?' } %>

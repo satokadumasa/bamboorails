@@ -39,7 +39,7 @@
                       <%= link_to(note.title, note) %>
                     </td>
                     <td style="width: 20%;">
-                      <%=link_to(username(note.user), controller: :user_infos, action: :show, id: (note.user.user_info ? note.user.user_info.name : note.user.id)) %>
+                      <%=link_to(username(note.user), controller: :user_infos, action: :show, id: (note.user.user_info ? note.user.user_info.user_name : note.user.id)) %>
                     </td>
                     <td>
                       <%= l(note.created_at, format: :short) %>

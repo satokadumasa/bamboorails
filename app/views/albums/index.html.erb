@@ -20,7 +20,7 @@
         <% @albums.each do |album| %>
         <div class="row">
           <div class="col-lg-2 col-md-2 col-12 order-lg-1 order-2">
-            <%= album.user.user_info ? album.user.user_info.name : 'User-' << album.user_id %>
+            <%= album.user.user_info ? album.user.user_info.user_name : 'User-' << album.user_id %>
           </div>
           <div class="col-lg-6 col-md-4 col-12 order-lg-1 order-2">
             <%= link_to album.title, album %>

@@ -12,7 +12,7 @@ class Remark < ApplicationRecord
   	remarks.each do | remark |
   		remark.user.user_info
       image_url = remark.user.user_info && remark.user.user_info.images.count > 0 ? url_for(remark.user.user_info.images[0]) : '/assets/nimage.png';
-  		datum = {id:remark.id, lounge_id:remark.id, content:remark.content, created_at:remark.created_at, user_name:remark.user.user_info ? remark.user.user_info.name : 'User-' + remark.user.id.to_s, image_url:image_url}
+  		datum = {id:remark.id, lounge_id:remark.id, content:remark.content, created_at:remark.created_at, user_name:remark.user.user_info ? remark.user.user_info.user_name : 'User-' + remark.user.id.to_s, image_url:image_url}
   		data << datum
   	end
   	return data

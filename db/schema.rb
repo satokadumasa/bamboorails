@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_06_24_051718) do
+ActiveRecord::Schema.define(version: 2019_06_27_083250) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|
     t.string "name", null: false
@@ -241,6 +241,8 @@ ActiveRecord::Schema.define(version: 2019_06_24_051718) do
     t.datetime "updated_at", null: false
     t.string "profile_image"
     t.integer "profile_image_id"
+    t.string "real_name"
+    t.string "user_name", limit: 32, default: "", null: false
   end
 
   create_table "users", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8", force: :cascade do |t|

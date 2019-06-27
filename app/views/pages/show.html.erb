@@ -1,5 +1,5 @@
 				<h4><%= @page.title %></h4> 
-        <%= t 'pages.show.user_name' %>：<%= @page.user.user_info ? link_to(@page.user.user_info.name, {controller: :user_infos, action: :show, id: @page.user.user_info.name}) : 'User-' << @page.user_id.to_s %><br>
+        <%= t 'pages.show.user_name' %>：<%= @page.user.user_info ? link_to(@page.user.user_info.user_name, {controller: :user_infos, action: :show, id: @page.user.user_info.user_name}) : 'User-' << @page.user_id.to_s %><br>
 
 				[<%= l(@page.created_at, format: :short) %>]
 				<hr>
@@ -87,7 +87,7 @@
 						<div class="overflow-auto">
 							<h4><%= page_comment.title %></h4>
 						</div>
-						<%= page_comment.page.user.user_info.name %> さん
+						<%= page_comment.page.user.user_info.user_name %> さん
 						[<%= page_comment.created_at ? l(page_comment.created_at , format: :short) : '--' %>]<br>
 						<div class="overflow-auto" style="word-break: break-all;">
 							<%= br(page_comment.detail) %><br>

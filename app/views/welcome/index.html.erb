@@ -21,7 +21,7 @@
               <%= link_to note.title, note %>
             </div>
             <div class="col-lg-2 col-md-8 col-sm-8 col-8">
-              <%= note.user.user_info ? link_to(note.user.user_info.name, {controller: :user_infos, action: :show, id: note.user.user_info.name}) : 'User-' << note.user_id.to_s %>
+              <%= note.user.user_info ? link_to(note.user.user_info.user_name, {controller: :user_infos, action: :show, id: note.user.user_info.user_name}) : 'User-' << note.user_id.to_s %>
             </div>
             <div class="col-lg-2 col-md-4 col-sm-4 col-4">
               <%= l(note.created_at, format: :short) %>
@@ -37,7 +37,7 @@
                 <%=link_to follow_user_note.title, follow_user_note %><br>
               </div>
               <div class="col-lg-2 col-md-8 col-sm-8 col-8">
-                <%= follow_user_note.user.user_info ? link_to(follow_user_note.user.user_info.name, {controller: :user_infos, action: :show, id: follow_user_note.user.user_info.name}) : 'User-' << follow_user_note.user_id.to_s %>
+                <%= follow_user_note.user.user_info ? link_to(follow_user_note.user.user_info.user_name, {controller: :user_infos, action: :show, id: follow_user_note.user.user_info.user_name}) : 'User-' << follow_user_note.user_id.to_s %>
               </div>
               <div class="col-lg-2 col-md-4 col-sm-4 col-4">
                 <%= l(follow_user_note.created_at, format: :short) %>
@@ -51,7 +51,7 @@
                 <%=link_to bookmarks.note.title, bookmarks.note %><br>
               </div>
               <div class="col-lg-2 col-md-8 col-sm-8 col-8">
-                <%= bookmarks.note.user.user_info ? link_to(bookmarks.note.user.user_info.name, {controller: :user_infos, action: :show, id: bookmarks.note.user.user_info.name}) : 'User-' << bookmarks.note.user_id.to_s %>
+                <%= bookmarks.note.user.user_info ? link_to(bookmarks.note.user.user_info.user_name, {controller: :user_infos, action: :show, id: bookmarks.note.user.user_info.user_name}) : 'User-' << bookmarks.note.user_id.to_s %>
               </div>
               <div class="col-lg-2 col-md-4 col-sm-4 col-4">
                 <%= l(bookmarks.note.created_at, format: :short) %>

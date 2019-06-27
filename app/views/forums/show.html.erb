@@ -1,6 +1,6 @@
 				<p id="notice"><%= notice %></p>
 				<h4><%= @forum.title %></h4>
-    		投稿者：<%= @forum.user.user_info ? link_to(@forum.user.user_info.name, {controller: :user_infos, action: :show, id: @forum.user.user_info.name}) : 'User-' << @forum.user_id.to_s %><br>
+    		投稿者：<%= @forum.user.user_info ? link_to(@forum.user.user_info.user_name, {controller: :user_infos, action: :show, id: @forum.user.user_info.user_name}) : 'User-' << @forum.user_id.to_s %><br>
 				[<%= l(@forum.created_at, format: :short) %>]
 				<hr>
 				<ul class="list-inline">
@@ -91,7 +91,7 @@
 						<dl>
 							<dt>
 								<h5><%=forum_comment.title %></h5>
-								<%=forum_comment.user.user_info.name %><br>
+								<%=forum_comment.user.user_info.user_name %><br>
 								(<%=l(forum_comment.created_at, format: :short) %>)
 							</dt>
 							<dd>

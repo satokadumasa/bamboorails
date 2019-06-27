@@ -22,7 +22,7 @@
           <tbody>
             <% @user_infos.each do |user_info| %>
               <tr>
-                <td><%= link_to user_info.name, user_info %></td>
+                <td><%= link_to user_info.user_name, user_info %></td>
                 <% if (current_user && (current_user.id == user_info.user_id || current_user.is_admin)) %>
                 <td><%= user_info.mobile %></td>
                 <td><%= user_info.pref_id %></td>

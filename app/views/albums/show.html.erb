@@ -9,7 +9,7 @@
             </div>
             <div class="album_info">
             	<div class="album_info_row">
-                    <%= @album.user.user_info ? link_to(@album.user.user_info.name, {controller: :user_infos, action: :show, id: @album.user.user_info.name}) : 'User-' << @album.user_id.to_s %>
+                    <%= @album.user.user_info ? link_to(@album.user.user_info.user_name, {controller: :user_infos, action: :show, id: @album.user.user_info.user_name}) : 'User-' << @album.user_id.to_s %>
             	</div>
             	<div class="album_info_row">
             		<%= l @album.created_at, format: :short %>

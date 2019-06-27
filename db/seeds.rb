@@ -33,6 +33,7 @@ user.save
 user_info = UserInfo.new
 user_info.user_id = 1
 user_info.name = 'Administrator'
+user_info.user_name = 'Administrator'
 user_info.mobile = '08011112222'
 user_info.pref_id = 12
 user_info.postal_code = '2702251'

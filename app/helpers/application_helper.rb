@@ -10,6 +10,6 @@ module ApplicationHelper
   end
 
   def username(user)
-  	user.user_info ? user.user_info.name : 'User-' + user.id.to_s
+  	user.user_info ? user.user_info.user_name : 'User-' + user.id.to_s
   end
 end

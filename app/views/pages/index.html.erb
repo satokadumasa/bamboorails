@@ -6,7 +6,7 @@
           <tbody>
             <% @pages.each do |page| %>
               <tr>
-                <td style="width: 20%;"><%= page.user.user_info.name %></td>
+                <td style="width: 20%;"><%= page.user.user_info.user_name %></td>
                 <td style="width: 30%;"><%= page.title %></td>
                 <td style="width: 20%;"><%= page.detail %></td>
                 <td style="width: 10%;"><%= link_to 'Show', page %></td>

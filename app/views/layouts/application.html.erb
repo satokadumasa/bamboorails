@@ -67,7 +67,7 @@
                 <% end %>
               </a>
             <% end %>
-            <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.name, { :class => 'btn-sm', method: :get}) : (link_to('New Profile', new_user_info_path, { :class => 'btn-sm', method: :get }) ) %>
+            <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.user_name, { :class => 'btn-sm', method: :get}) : (link_to('New Profile', new_user_info_path, { :class => 'btn-sm', method: :get }) ) %>
             <%=link_to("Password", edit_user_registration_path, class: "btn-sm") %>
             <%=link_to('Sign Out', '/sign_out', class: 'btn-sm')  %>
           <% else %>
@@ -153,7 +153,7 @@
             <%= link_to "User", edit_user_registration_path, { :class => "drawer-menu-item"} %>
           </li>
           <li class="drawer-menu">
-            <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.name, { :class => "drawer-menu-item", method: :get}) : (link_to('Profile', new_user_info_path, { :class => "", method: :get }) << ' | ') %>
+            <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.user_name, { :class => "drawer-menu-item", method: :get}) : (link_to('Profile', new_user_info_path, { :class => "", method: :get }) << ' | ') %>
           </li>
           <li class="">
             <%= link_to "Sign Out", '/sign_out', { :class => "drawer-menu-item", method: :delete } %>

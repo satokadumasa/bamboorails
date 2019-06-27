@@ -94,7 +94,7 @@ class UserInfosController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def user_info_params
-      params.require(:user_info).permit(:user_id, :name, :mobile, :pref_id, :postal_code, :address , :profile_image_id , images: [])
+      params.require(:user_info).permit(:user_id, :name, :mobile, :pref_id, :postal_code, :address , :profile_image_id , :user_name, images: [])
     end
 
     def purge_images image_ids

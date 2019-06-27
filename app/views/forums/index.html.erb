@@ -35,7 +35,7 @@
                 <%= link_to(forum.title, forum) %>
               </dt>
               <dd>
-                [<%= link_to(username(forum.user), user_info_path(forum.user.user_info ? forum.user.user_info.name : forum.user.id)) %>]
+                [<%= link_to(username(forum.user), user_info_path(forum.user.user_info ? forum.user.user_info.user_name : forum.user.id)) %>]
                 (<%=l(forum.created_at, format: :short) %>)<br>
                 <%= (current_user && (current_user.id == forum.user_id || current_user.is_admin)) ? link_to('Edit', edit_forum_path(forum)) << ' | ' : '' %>
                 <%= (current_user && (current_user.id == forum.user_id || current_user.is_admin)) ? link_to('Destroy', forum, method: :delete, data: { confirm: 'Are you sure?' }) : '' %><br>

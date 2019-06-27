@@ -6,7 +6,7 @@
             <% @newses.each do |news| %>
               <tr>
                 <td style="width: 60%;"><%= link_to news.title, news %></td>
-                <td style="width: 20%;"><%= news.user.user_info.name %></td>
+                <td style="width: 20%;"><%= news.user.user_info.user_name %></td>
                 <td style="width: 20%;"><%= l(news.created_at, format: :short) %></td>
               </tr>
             <% end %>

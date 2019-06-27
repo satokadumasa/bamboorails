@@ -1,8 +1,8 @@
 <table>
 <% @user.followers.each do |user| %>
 	<tr>
-	  <td>  <%= user.user_info.name %> </td>
-	  <td><%= link_to '詳細', {controller: :user_infos, action: :show, id: user.user_info.name} %></td>
+	  <td>  <%= user.user_info.user_name %> </td>
+	  <td><%= link_to '詳細', {controller: :user_infos, action: :show, id: user.user_info.user_name} %></td>
 	</tr>
 <% end %>
 </table>

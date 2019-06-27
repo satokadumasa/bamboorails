@@ -16,7 +16,7 @@
             </div>
             <div class="col-lg-10 col-9">
               <div class="input-group">
-                <%= current_user.user_info ? current_user.user_info.name : 'User-' + current_user.id.to_s %>
+                <%= current_user.user_info ? current_user.user_info.user_name : 'User-' + current_user.id.to_s %>
                 <%= form.hidden_field :sender_id %>
               </div>
             </div>
@@ -26,7 +26,7 @@
             </div>
             <div class="col-lg-10 col-9">
               <div class="input-group">
-                <%= @receiver.user_info ? @receiver.user_info.name : 'User-' + @receiver.id.to_s %>
+                <%= @receiver.user_info ? @receiver.user_info.user_name : 'User-' + @receiver.id.to_s %>
                 <%= form.hidden_field :receiver_id %>
               </div>
             </div>

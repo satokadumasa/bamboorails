@@ -95,6 +95,7 @@ ja:
       tab1_name: ' さんのノート・アルバム（新着順）'  
       profile_image: さん
       id: ID
+      user_name: ユーザー名
       name: 名前 # view側： User.human_attribute_name :name => "名前" /　t("activerecord.attributes.user.name")と同じ
       pref_id: 都道府県
       mobile: 携帯電話

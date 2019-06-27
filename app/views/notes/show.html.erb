@@ -3,7 +3,7 @@
 					  <div class="contents_title overflow-auto">
 					  	「<%= @note.title %>」
 					  </div>
-        		<%= t 'notes.show.user_name' %>：<%= @note.user.user_info ? link_to(username(@note.user), {controller: :user_infos, action: :show, id: @note.user.user_info.name }) : 'User-' << @note.user_id.to_s %><br>
+        		<%= t 'notes.show.user_name' %>：<%= @note.user.user_info ? link_to(username(@note.user), {controller: :user_infos, action: :show, id: @note.user.user_info.user_name }) : 'User-' << @note.user_id.to_s %><br>
 						<hr>
 							<%= (current_user && (current_user.id == @note.user.id || current_user.is_admin)) ? link_to(t('notes.show.edit'), edit_note_path(@note), class: 'btn btn-primary btn-sm') << ' |' : '' %>
 							<%= link_to t('notes.show.back_to_list'), notes_path, class: 'btn btn-primary btn-sm' %>

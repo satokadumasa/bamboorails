@@ -1,6 +1,7 @@
 class Lounge < ApplicationRecord
 	belongs_to :user
 	has_many :remarks
+	has_many :lounge_members
 
   validates :user_id, presence: true, numericality: true
   validates :title, presence: true,length:{ maximum: 64, too_long: "最大%{count}文字まで使用できます"}

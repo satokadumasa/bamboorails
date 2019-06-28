@@ -14,7 +14,7 @@ $(function() {
         'room': room_name,
         'lounge_id': $('#remark_lounge_id').val(),
         'user_id': $('#remark_user_id').val(),
-        'content': '[' + username + ']さんが入室しました。',
+        'content': 'attend',
         'last_posted_at': $('#last_posted_at').val(),
         'authenticity_token': authenticity_token
       };
@@ -29,7 +29,7 @@ $(function() {
         'room': room_name,
         'lounge_id': $('#remark_lounge_id').val(),
         'user_id': $('#remark_user_id').val(),
-        'content': '[' + username + ']さんが退室しました。',
+        'content': 'secession',
         'last_posted_at': $('#last_posted_at').val(),
         'authenticity_token': authenticity_token
       };
@@ -42,24 +42,47 @@ $(function() {
 
     App.chat.received = function(data) {
         // Called when there's incoming data on the websocket for this channel
-        for (var i = 0 ; i < data.length; i++) {
+        var remarks = data['remarks'];
+        var secession = data['secession'];
+        var attends = data['attends'];
+        for (var i = 0 ; i < remarks.length; i++) {
           var colum = "";
           colum = '<div class="col-4">';
-          colum = colum + '<div style="float: left;"><img src="' + data[i]['image_url'] + '" width="30" height="30"></div>';
-          colum = colum + '<div class="view_user_info" style="float: left;" onclick="view_user_info(this)">' + data[i]['user_name'] + '</div>' ;
+          colum = colum + '<div style="float: left;"><img src="' + remarks[i]['image_url'] + '" width="30" height="30"></div>';
+          colum = colum + '<div style="float: left;">' + remarks[i]['user_name'] + '</div>' ;
           colum = colum + '</div>';
           colum = colum + '<div class="col-8">';
-          colum = colum + data[i]['created_at'];
+          colum = colum + remarks[i]['created_at'];
           colum = colum + '</div>';
           colum = colum + '<div class="col-12">';
-          colum = colum + data[i]['content'];
+          colum = colum + remarks[i]['content'];
           colum = colum + '<hr>';
           colum = colum + '</div>';
           
-          $('#last_posted_at').val(data[i]['created_at']);
+          $('#last_posted_at').val(remarks[i]['created_at']);
           if($('#remarks').is('*')) {
             $('#remarks').prepend(colum);
           }
+        }
+
+        if(attends.length > 0) {
+          $('#attender_list').empty();
+          for (var i = 0; i < attends.length; i++) {
+            var attend = attends[i]
+            var str = '';
+            str = str + '<li id="user_' + attend['user_id'] + '"  user_name="' + attend['user_name'] + '" class="view_user_info list-inline-item" onclick="view_user_info(this)">';
+            str = str + '<img src="' + attend['image_path'] + '" width="30" height="30">';
+            str = str + '</li>';
+            $('#attender_list').append(str);
+          }
+        }
+
+        if(secession) {
+          var str = '';
+          // str = str + '<li id="user_' + secession['user_id'] + '">';
+          // str = str + '<img src="' + secession['image_path'] + '" width="30" height="30">';
+          // str = str + '</li>';
+          $('#user_' + secession['user_id']).remove();
         }
     }
 
@@ -91,22 +114,24 @@ $(function() {
 });
 
 function view_user_info(obj) {
-  // var username = $(obj).text();
-  // var url = base_url + '-/' + username + '.json';
-  // $.ajax({
-  //   url: url,
-  //   type: 'get',
-  //   data:{
-  //   }
-  // })
-  // .done( (data) => {
-  //   alert(data);
-  // })
-  // .fail( (data) => {
-  //   alert('view_user_info fail')
-  // })
-  // .always( (data) => {
-  // });
+  var user_name = $(obj).attr('user_name');
+  var username = $(obj).text();
+  var url = base_url + '-/' + user_name + '.json';
+  alert("view_user_info:" + url);
+  $.ajax({
+    url: url,
+    type: 'get',
+    data:{
+    }
+  })
+  .done( (data) => {
+    alert(JSON.stringify(data));
+  })
+  .fail( (data) => {
+    alert('view_user_info fail')
+  })
+  .always( (data) => {
+  });
 }
 
 function last_posted_at() {

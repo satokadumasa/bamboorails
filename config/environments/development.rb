@@ -29,15 +29,15 @@ Rails.application.configure do
   config.file_watcher = ActiveSupport::EventedFileUpdateChecker
   Rails.application.routes.default_url_options[:host] = ENV['BAMBOO_HOST']
   # Rails.application.routes.default_url_options[:port] = 3000
-  config.action_mailer.default_url_options = { host: 'hesper.example.com', :protocol => 'http' }
-  config.action_mailer.smtp_settings   = {
-    :enable_starttls_auto => true,
-    :address => ENV['BAMBOO_MAIL_SERVER'],
-    :port => 587,
-    :domain => ENV['BAMBOO_MAIL_DOMAIN'],
-    :user_name => ENV['BAMBOO_MAIL_USER'],
-    :password => ENV['BAMBOO_MAIL_PASSWORD'],
-    :authentication => ENV['BAMBOO_MAIL_AUTH'],
-  }
-  # config.action_mailer.delivery_method = :letter_opener_web
+  # config.action_mailer.default_url_options = { host: 'hesper.example.com', :protocol => 'http' }
+  # config.action_mailer.smtp_settings   = {
+  #   :enable_starttls_auto => true,
+  #   :address => ENV['BAMBOO_MAIL_SERVER'],
+  #   :port => 587,
+  #   :domain => ENV['BAMBOO_MAIL_DOMAIN'],
+  #   :user_name => ENV['BAMBOO_MAIL_USER'],
+  #   :password => ENV['BAMBOO_MAIL_PASSWORD'],
+  #   :authentication => ENV['BAMBOO_MAIL_AUTH'],
+  # }
+  config.action_mailer.delivery_method = :letter_opener_web
 end

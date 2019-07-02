@@ -5,6 +5,8 @@ class UserInfo < ApplicationRecord
 	belongs_to :user
 	belongs_to :pref
 
+	attr_writer :image_path
+
   validates :user_id, presence: true, numericality: true
   validates :user_name, presence: true, length:{ maximum: 32, too_long: "最大%{count}文字まで使用できます"}, uniqueness: true
   validates :mobile, presence: true, length:{ maximum: 13, too_long: "最大%{count}文字まで使用できます"}
@@ -19,6 +21,16 @@ class UserInfo < ApplicationRecord
   def image_path
     logger.debug("UserInfo.image_path Start")
     image_url = self.images.count > 0  ? url_for(self.images[0]) : '/assets/nimage.png'
+  end
+
+  def access_restrictions(user)
+  	unless user.is_admin || user.id == self.user.id
+  		self.name = nil
+  		self.mobile = nil
+  		self.pref_id = nil
+  		self.postal_code = nil
+  		self.address = nil
+		end 
   end
 
 	private

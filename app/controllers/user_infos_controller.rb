@@ -5,24 +5,22 @@ class UserInfosController < ApplicationController
   # GET /user_infos.json
   def index
     @user_infos = UserInfo.page(params[:page]).joins(:pref).eager_load(:pref).order(id: :asc)
-    # @pages = Page.paginate(page: params[:page], per_page: 5).where(public_status: [0,1]).where(user_id: @user_info.user_id).order(created_at: :desc)
   end
 
   # GET /user_infos/1
   # GET /user_infos/1.json
   def show
-    # if params[:id] =~ /^[0-9]+$/
-    #   @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).find(params[:id])
-    # else
-    #   @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(user_name: params[:id]).first()
-    # end
     @notes = Note.where(user_id: @user_info.user_id)
     @notes = @notes.where(public_status: [0,1]) unless (current_user && current_user.id == @user_info.user_id)
     @notes = @notes.order(created_at: :desc)
     @user = @user_info.user
     respond_to do |format|
       format.html { render :show }
-      format.json { render :show, status: :ok, location: @user_info }
+      # format.json { render :show, status: :ok, location: @user_info }
+      format.json { 
+        @user_info.image_path = @image
+        render status: :ok, user_info: @user_info
+      }
     end
   end
 
@@ -89,6 +87,8 @@ class UserInfosController < ApplicationController
         @user_info = UserInfo.left_outer_joins(:pref, user: :notes).eager_load(:pref, user: :notes).where(user_name: params[:id]).first()
       end
       @image = @user_info.profile_image_id ? @user_info.images.find(@user_info.profile_image_id) : nil
+      @user_info.access_restrictions(current_user)
+
       @prefs = Pref.all()
     end
 

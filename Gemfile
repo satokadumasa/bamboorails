@@ -6,6 +6,7 @@ ruby '2.4.0'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '~> 5.2.3'
+gem 'rake'
 # Use sqlite3 as the database for Active Record
 # gem 'sqlite3'
 gem 'mysql2'
@@ -45,6 +46,8 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # 認証
 gem 'devise'
+gem 'omniauth'
+gem 'omniauth-twitter'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'cancancan'
@@ -72,7 +75,7 @@ gem 'rails-assets-backbone'
 
 #gem 'faye-websocket'
 #gem 'websocket-rails'
-
+gem 'websocket-driver'
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

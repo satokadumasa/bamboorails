@@ -72,6 +72,9 @@
             <%=link_to('Sign Out', '/sign_out', class: 'btn-sm')  %>
           <% else %>
             <%=link_to('Sign In', new_user_session_path, class: 'btn-sm')  %>
+            <!--
+            <%= link_to "Sign in with twitter", user_twitter_omniauth_authorize_path %>
+            -->
           <% end %>
         </div>
       </div>

@@ -34,10 +34,9 @@ $(function() {
         'authenticity_token': authenticity_token
       };
       $('#last_posted_at').val(last_posted_at())
-      location.href = base_url + 'lounges/'
       App.chat.remark(data);
-      return this.perform('unsubscribed', data);
-
+      location.href = base_url + 'lounges/'
+      return this.perform('unsubscribed');
     }
 
     App.chat.received = function(data) {
@@ -79,9 +78,6 @@ $(function() {
 
         if(secession) {
           var str = '';
-          // str = str + '<li id="user_' + secession['user_id'] + '">';
-          // str = str + '<img src="' + secession['image_path'] + '" width="30" height="30">';
-          // str = str + '</li>';
           $('#user_' + secession['user_id']).remove();
         }
     }
@@ -117,7 +113,6 @@ function view_user_info(obj) {
   var user_name = $(obj).attr('user_name');
   var username = $(obj).text();
   var url = base_url + '-/' + user_name + '.json';
-  alert("view_user_info:" + url);
   $.ajax({
     url: url,
     type: 'get',
@@ -125,13 +120,31 @@ function view_user_info(obj) {
     }
   })
   .done( (data) => {
-    alert(JSON.stringify(data));
+    alert('view_user_info');
+    var str = '';
+    str = str + '<div class="user_info_modal" id="' + data['user_id'] + '" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">';
+    str = str + '  <div>';
+    str = str + '    <img src="' + data['image_path'] + '" width="100" height="100">';
+    str = str + '  <div>';
+    str = str + '  <div>';
+    str = str + '    ' + data['user_name'];
+    str = str + '  </div>';
+    str = str + '  <div class="btn" onclick="close_user_info(' + data['user_id'] + ')">';
+    str = str + '    CLOSE'
+    str = str + '  </div>';
+    str = str + '</div>';
+    $('#user_info').append(str);
+    // $('#'+ data['user_id']).show();
   })
   .fail( (data) => {
     alert('view_user_info fail')
   })
   .always( (data) => {
   });
+}
+
+function close_user_info(id) {
+  $('#' + id).remove(); 
 }
 
 function last_posted_at() {

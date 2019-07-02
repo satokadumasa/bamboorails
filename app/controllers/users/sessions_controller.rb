@@ -7,11 +7,13 @@ class Users::SessionsController < Devise::SessionsController
 
   # GET /resource/sign_in
   def new
+    logger.debug("Users::SessionsController.new")
     super
   end
 
   # POST /resource/sign_in
   def create
+    logger.debug("Users::SessionsController.create")
     super
   end
 
@@ -27,6 +29,7 @@ class Users::SessionsController < Devise::SessionsController
     end
 
     def after_login
+      logger.debug("Users::SessionsController.after_login")
       unless current_user.first_sign_in_at
         current_user.first_sign_in_at = Time.current
         current_user.save

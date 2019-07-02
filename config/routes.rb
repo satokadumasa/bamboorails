@@ -1,11 +1,14 @@
 Rails.application.routes.draw do
+  root to: 'welcome#index'
+
   mount ActionCable.server, at: '/cable'
+  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
   resources :lounges do
     resources :remarks
   end
+
   resources :dmessages
-  root to: 'welcome#index'
-  mount RailsAdmin::Engine => '/admin', as: 'rails_admin'
+
   get 'relationships/create'
   get 'relationships/destroy'
   get 'follow/add/:id', to: "follow#add"
@@ -35,7 +38,8 @@ Rails.application.routes.draw do
 
   devise_for :users, :controllers => {
     :registrations => 'users/registrations',
-    :sessions => 'users/sessions'   
+    :sessions => 'users/sessions' ,
+    :omniauth_callbacks => 'users/omniauth_callbacks'
   } 
 
   get 'users/following'

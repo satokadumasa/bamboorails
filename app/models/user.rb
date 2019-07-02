@@ -3,7 +3,7 @@ class User < ApplicationRecord
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable, :trackable and :omniauthable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :validatable, :confirmable
+         :recoverable, :rememberable, :validatable, :confirmable, :omniauthable
 
   has_one :user_info
   has_many :albums
@@ -25,6 +25,37 @@ class User < ApplicationRecord
   has_many :followers, through: :follower_relationships
   has_many :send_messages, foreign_key: "sender_id", class_name: "Dmessage", dependent: :destroy
   has_many :recv_messages, foreign_key: "receiver_id", class_name: "Dmessage", dependent: :destroy
+
+  # def self.find_for_oauth(auth)
+  #  user = User.where(uid: auth.uid, provider: auth.provider).first
+
+  #  unless user
+  #    user = User.create(
+  #      uid:      auth.uid,
+  #      provider: auth.provider,
+  #      email:    User.dummy_email(auth),
+  #      password: Devise.friendly_token[0, 20],
+  #      image: auth.info.image,
+  #      name: auth.info.name,
+  #      nickname: auth.info.nickname,
+  #      )
+  #  end
+
+  #  user
+  # end
+
+  def self.find_for_twitter_oauth(auth, signed_in_resource=nil)
+    user = User.where(:provider => auth.provider, :uid => auth.uid).first
+    unless user
+      user = User.create(name:     auth.info.nickname,
+                         provider: auth.provider,
+                         uid:      auth.uid,
+                         email:    User.create_unique_email,
+                         password: Devise.friendly_token[0,20]
+                        )
+    end
+    user
+  end
 
   def is_admin
     return self.admin === true
@@ -51,4 +82,9 @@ class User < ApplicationRecord
     watch_forums = WatchForum.where(forum_id: forum_id).where(user_id: self.id)
     ret = watch_forums.count
   end
+
+  private
+    def self.dummy_email(auth)
+     "#{auth.uid}-#{auth.provider}@example.com"
+    end
 end

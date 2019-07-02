@@ -6,7 +6,8 @@ class ChatChannel < ApplicationCable::Channel
 
   def unsubscribed
     # Any cleanup needed when channel is unsubscribed
-    logger.debug("ChatChannel.unsubscribed");
+    logger.debug("ChatChannel.unsubscribed lounge_member:" + @lounge_member.inspect)
+    @lounge_member.destroy
   end
 
   def remark(data)
@@ -22,7 +23,11 @@ class ChatChannel < ApplicationCable::Channel
     when 'attend' then
       data['content'] = '[' + user_name + ']さんが入室しました。'
 
-      lounge_member = LoungeMember.create([lounge_id: data['lounge_id'],user_name: user_name, user_id: data['user_id'], image_path: image_path])
+      @lounge_member = LoungeMember.where(lounge_id: data['lounge_id']).where(user_id: data['user_id']).first
+      unless @lounge_member
+        logger.debug("ChatChannel.remark :Add member")
+        @lounge_member = LoungeMember.create([lounge_id: data['lounge_id'],user_name: user_name, user_id: data['user_id'], image_path: image_path])
+      end
       lounge_members = LoungeMember.where(lounge_id: data['lounge_id'])
 
       lounge_members.each do |lounge_member|

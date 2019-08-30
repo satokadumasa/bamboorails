@@ -46,8 +46,9 @@ gem 'bootsnap', '>= 1.1.0', require: false
 
 # 認証
 gem 'devise'
-gem 'omniauth'
-gem 'omniauth-twitter'
+gem 'devise_token_auth'
+#gem 'omniauth'
+#gem 'omniauth-twitter'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'cancancan'
@@ -94,7 +95,7 @@ group :development do #開発環境のみ
   gem 'spring-watcher-listen', '~> 2.0.0'
 end
 
-gem 'carrirewave'
+gem 'carrierwave'
 gem 'rmagick'
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

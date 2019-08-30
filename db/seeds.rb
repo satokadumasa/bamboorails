@@ -24,8 +24,8 @@ pref_names.each{ |pref_name|
 
 user = User.new
 user.email = 'admin@example.com'
-user.password = 'password'
-user.password_confirmation = 'password'
+user.password = 'glxre297'
+user.password_confirmation = 'glxre297'
 user.confirmed_at = DateTime.now
 user.admin = 1
 user.save
@@ -34,6 +34,42 @@ user_info = UserInfo.new
 user_info.user_id = 1
 user_info.name = 'Administrator'
 user_info.user_name = 'Administrator'
+user_info.mobile = '08011112222'
+user_info.pref_id = 12
+user_info.postal_code = '2702251'
+user_info.address = 'Kanegasaku 408-115, Matsudo'
+user_info.save
+
+user = User.new
+user.email = 'sato.kadumasa@gmail.com'
+user.password = 'glxre297'
+user.password_confirmation = 'glxre297'
+user.confirmed_at = DateTime.now
+user.admin = 1
+user.save
+
+user_info = UserInfo.new
+user_info.user_id = 2
+user_info.name = 'ksato'
+user_info.user_name = 'ksato'
+user_info.mobile = '08011112222'
+user_info.pref_id = 12
+user_info.postal_code = '2702251'
+user_info.address = 'Kanegasaku 408-115, Matsudo'
+user_info.save
+
+user = User.new
+user.email = 'mari@example.com'
+user.password = 'glxre297'
+user.password_confirmation = 'glxre297'
+user.confirmed_at = DateTime.now
+user.admin = 1
+user.save
+
+user_info = UserInfo.new
+user_info.user_id = 2
+user_info.name = 'mari'
+user_info.user_name = 'mari'
 user_info.mobile = '08011112222'
 user_info.pref_id = 12
 user_info.postal_code = '2702251'

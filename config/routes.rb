@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+#  mount_devise_token_auth_for 'User', at: 'auth'
   root to: 'welcome#index'
 
   mount ActionCable.server, at: '/cable'
@@ -27,20 +28,30 @@ Rails.application.routes.draw do
   resources :posts
 
   # devise_for :users
-  # devise_for :users, controllers: {
-  #   sessions: 'users/sessions'
-  # }
+   devise_for :users, controllers: {
+     sessions: 'users/sessions'
+   }
+
+#  devise_for :users
+
+  # token auth routes available at /api/v1/auth
+
   devise_scope :user do
     get "/sign_in", :to => "users/sessions#new"
     get "/sign_out", :to => "users/sessions#destroy"
     get "/confirmation", :to => "users/confirmations#show"
   end
 
-  devise_for :users, :controllers => {
-    :registrations => 'users/registrations',
-    :sessions => 'users/sessions' ,
-    :omniauth_callbacks => 'users/omniauth_callbacks'
-  } 
+  # devise_for :users, :controllers => {
+  #   :registrations => 'users/registrations',
+  #   :sessions => 'users/sessions'
+  # }
+
+  namespace :api do
+    scope :v1 do
+      mount_devise_token_auth_for 'User', at: 'auth'
+    end
+  end
 
   get 'users/following'
   get 'users/followers'

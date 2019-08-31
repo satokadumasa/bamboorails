@@ -69,12 +69,9 @@
             <% end %>
             <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.user_name, { :class => 'btn-sm', method: :get}) : (link_to('New Profile', new_user_info_path, { :class => 'btn-sm', method: :get }) ) %>
             <%=link_to("Password", edit_user_registration_path, class: "btn-sm") %>
-            <%=link_to('Sign Out', '/sign_out', class: 'btn-sm')  %>
+            <%=link_to('Sign Out', sign_out_path, class: 'btn-sm')  %>
           <% else %>
             <%=link_to('Sign In', new_user_session_path, class: 'btn-sm')  %>
-            <!--
-            <%= link_to "Sign in with twitter", user_twitter_omniauth_authorize_path %>
-            -->
           <% end %>
         </div>
       </div>
@@ -97,8 +94,8 @@
   </main>
   <header role="banner">
     <nav class="drawer-nav" role="navigation">
-      <ul 
-        class="drawer-menu" 
+      <ul
+        class="drawer-menu"
         style="transition-timing-function: cubic-bezier(0.1, 0.57, 0.1, 1); transition-duration: 0ms; transform: translate(0px, 0px) translateZ(0px);">
         <!--  -->
         <li class="drawer-brand">
@@ -159,7 +156,7 @@
             <%= current_user.user_info ? link_to('Profile', "/user_infos/" + current_user.user_info.user_name, { :class => "drawer-menu-item", method: :get}) : (link_to('Profile', new_user_info_path, { :class => "", method: :get }) << ' | ') %>
           </li>
           <li class="">
-            <%= link_to "Sign Out", '/sign_out', { :class => "drawer-menu-item", method: :delete } %>
+            <%= link_to "Sign Out", destroy_user_session_path, { :class => "drawer-menu-item", method: :delete } %>
           </li>
         <% else%>
           <li class="">

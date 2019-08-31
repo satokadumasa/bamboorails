@@ -47,8 +47,6 @@ gem 'bootsnap', '>= 1.1.0', require: false
 # 認証
 gem 'devise'
 gem 'devise_token_auth'
-#gem 'omniauth'
-#gem 'omniauth-twitter'
 gem 'devise-i18n'
 gem 'devise-i18n-views'
 gem 'cancancan'

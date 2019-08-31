@@ -15,10 +15,10 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   # https://github.com/plataformatec/devise#omniauth
 
   # GET|POST /resource/auth/twitter
-  def passthru
-    logger.debug("Users::OmniauthCallbacksController.passthru")
-    super
-  end
+  #def passthru
+  #  logger.debug("Users::OmniauthCallbacksController.passthru")
+  #  super
+  #end
 
   # GET|POST /users/auth/twitter/callback
   # def failure
@@ -36,7 +36,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   #   callback_from :twitter
   # end
   def twitter
-    logger.debug("Users::OmniauthCallbacksController.twitter")
     # callback_from :twitter
     # You need to implement the method below in your model
     # @user = User.find_for_twitter_oauth(request.env["omniauth.auth"], current_user)
